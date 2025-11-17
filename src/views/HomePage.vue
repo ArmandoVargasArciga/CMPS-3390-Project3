@@ -6,14 +6,20 @@
 -->
 <div class="pageBackground">
     <div class = "container"> 
-               <!--- Ape typing.com--->
-            <h2 class="title"> APE TYPE </h2> 
+               <!--- Ape typing.com
+               <h2 class="title"> APE TYPE </h2> 
+               --->
+               <br>
+               <br>
+               <br>
+               <br>
             
-            
+
+
             <input class="username" placeholder="UserName"/>
             <input class="password" placeholder="Password"/>
-            
-            
+
+
             <!--These below dont work, youtube video clutch
             <v-text-field label="Name" class="textBox"> </v-text-field>
             <v-text-field label="Password" class="textBox"> </v-text-field>
@@ -25,8 +31,11 @@
                   label="Email Address" 
                   placeholder="johnpork@gmail.com" 
                   type="email"/>
-       <v-btn @click="login"  class="login" > Login   </v-btn>
-       <v-btn @click="SignUp" class="SignUp"> Sign Up </v-btn>
+       <div class="buttonposition">
+         <v-btn @click="login"  class="login" > Login   </v-btn>
+         <v-btn @click="SignUp" class="SignUp"> Sign Up </v-btn>
+       </div>
+       
    </div>
 
 </div>
@@ -35,8 +44,6 @@
 <script>
 //import mainImage from '@/src/images/content.png'
 import { ref } from 'vue';
-
-var data5 = ref('@/src/images/content.png')
 
 export default {
    data(){
@@ -62,19 +69,20 @@ export default {
 
 
 <style scoped> 
-h2{
+
+/*h2{
    text-align: center;
    font-family: Verdana;
    font-weight: 900;
    color: gold;
    text-shadow: 1px 1px 2px palevioletred;
    font-size: xxx-large;
-}
+}*/
 
 .container{
-   height: 100%;
+   height: 5%;
    width: auto;
-   margin-top: 35%;
+   margin-top: 01%;
    padding: 10%;
 }
  .username{
@@ -94,29 +102,35 @@ h2{
  }
 
 .login{
-   background-color: #1976d2;
+   background-color: black;
    color: white;
    font-weight: bold;
    padding: 10px 24px;
    border-radius: 12px;
    float: left;
+   margin-left: 25%;
    }
 
    .SignUp{
-   background-color: #1976d2;
+   background-color: black;
    color: white;
    font-weight: bold;
    padding: 10px 24px;
    border-radius: 12px;
    float: right;
+   margin-right: 25%;
    }
 
 .pageBackground{
-   background-image: url('@/src/images/content.png');
+   background-image: url('@/images/content.png');
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
+   height: 800px;
 }
 
+.buttonposition{
+   padding: 10px;
+}
 
 </style>
