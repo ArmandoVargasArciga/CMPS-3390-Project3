@@ -12,20 +12,36 @@
  <v-text-field label="Name" class="textBox"> </v-text-field>
  <v-text-field label="Password" class="textBox"> </v-text-field>
  -->
-   </div> 
+</div> 
 <!--Email mabey-->
 <div class="inputLogin">
- <v-text-field label="Email Address" placeholder="johnpork@gmail.com" type="email"/>
+ <v-text-field v-model="email" 
+               label="Email Address" 
+               placeholder="johnpork@gmail.com" 
+               type="email"/>
     <v-btn rounded="lg" size="large" class="login"> Login </v-btn>
     <v-btn rounded="lg" size="large" class="SignUp"> Sign Up </v-btn>
- </div>
+</div>
 
 
-<img :src="mainImage"/>
+<img src="'@/src/images/content.png" alt="logo">
 </template>
 
-<script setup>
-import mainImage from '@/src/images/content.png'
+<script>
+//import mainImage from '@/src/images/content.png'
+//import { ref } from 'vue';
+
+
+export default {
+   data(){
+      return {
+      email: ''
+      }
+   }
+},
+
+
+
 
 </script>
 <!--Have classes names to organize the style of the front page. -->
