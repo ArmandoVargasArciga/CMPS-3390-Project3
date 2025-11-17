@@ -1,11 +1,16 @@
 <template> 
+<!--
+   <div class="background">
+      <h1> {{data5}} </h1>
+   </div>
+-->
  <div class = "container"> 
     <!--- Ape typing.com--->
- <h2 class="title"> APETYPE </h2> 
+ <h2 class="title"> APE TYPE </h2> 
 
 
- <input placeholder="UserName"/>
- <input placeholder="Password"/>
+ <input class="username" placeholder="UserName"/>
+ <input class="password" placeholder="Password"/>
  
  
  <!--These below dont work, youtube video clutch
@@ -19,26 +24,34 @@
                label="Email Address" 
                placeholder="johnpork@gmail.com" 
                type="email"/>
-    <v-btn rounded="lg" size="large" class="login"> Login </v-btn>
-    <v-btn rounded="lg" size="large" class="SignUp"> Sign Up </v-btn>
+    <v-btn @click="login"  class="login" > Login   </v-btn>
+    <v-btn @click="SignUp" class="SignUp"> Sign Up </v-btn>
 </div>
 
 
-<img src="'@/src/images/content.png" alt="logo">
 </template>
 
 <script>
 //import mainImage from '@/src/images/content.png'
-//import { ref } from 'vue';
+import { ref } from 'vue';
 
+var data5 = ref('@/src/images/content.png')
 
 export default {
    data(){
       return {
       email: ''
       }
+   },
+   methods: {
+      login(){
+         console.log("I work button")
+      },
+      SignUp(){
+         console.log("I also work button")
+      },
    }
-},
+}
 
 
 
@@ -48,11 +61,56 @@ export default {
 
 
 <style scoped> 
-
-.textBox{
-   color: black;
-
+h2{
+   text-align: center;
+   font-family: Verdana;
+   font-weight: 900;
+   color: gold;
+   text-shadow: 1px 1px 2px palevioletred;
+   font-size: xxx-large;
 }
+
+.container{
+   height: 100%;
+   width: auto;
+   margin-top: 35%;
+   padding: 10%;
+}
+ .username{
+   height: 5ch;
+   width: 45%;
+   float: left;
+   text-align: center;
+   border-radius: 10px;
+ }
+
+.password{
+   height: 5ch;
+   width: 45%;
+   float: right;
+   text-align: center;
+   border-radius: 10px;
+ }
+
+.login{
+   background-color: #1976d2;
+   color: white;
+   font-weight: bold;
+   padding: 10px 24px;
+   border-radius: 12px;
+   float: left;
+   }
+
+   .SignUp{
+   background-color: #1976d2;
+   color: white;
+   font-weight: bold;
+   padding: 10px 24px;
+   border-radius: 12px;
+   float: right;
+   }
+
+
 
 
 </style>
