@@ -4,31 +4,32 @@
       <h1> {{data5}} </h1>
    </div>
 -->
- <div class = "container"> 
-    <!--- Ape typing.com--->
- <h2 class="title"> APE TYPE </h2> 
+<div class="pageBackground">
+    <div class = "container"> 
+               <!--- Ape typing.com--->
+            <h2 class="title"> APE TYPE </h2> 
+            
+            
+            <input class="username" placeholder="UserName"/>
+            <input class="password" placeholder="Password"/>
+            
+            
+            <!--These below dont work, youtube video clutch
+            <v-text-field label="Name" class="textBox"> </v-text-field>
+            <v-text-field label="Password" class="textBox"> </v-text-field>
+            -->
+   </div> 
+   <!--Email mabey-->
+   <div class="inputLogin">
+    <v-text-field v-model="email" 
+                  label="Email Address" 
+                  placeholder="johnpork@gmail.com" 
+                  type="email"/>
+       <v-btn @click="login"  class="login" > Login   </v-btn>
+       <v-btn @click="SignUp" class="SignUp"> Sign Up </v-btn>
+   </div>
 
-
- <input class="username" placeholder="UserName"/>
- <input class="password" placeholder="Password"/>
- 
- 
- <!--These below dont work, youtube video clutch
- <v-text-field label="Name" class="textBox"> </v-text-field>
- <v-text-field label="Password" class="textBox"> </v-text-field>
- -->
-</div> 
-<!--Email mabey-->
-<div class="inputLogin">
- <v-text-field v-model="email" 
-               label="Email Address" 
-               placeholder="johnpork@gmail.com" 
-               type="email"/>
-    <v-btn @click="login"  class="login" > Login   </v-btn>
-    <v-btn @click="SignUp" class="SignUp"> Sign Up </v-btn>
 </div>
-
-
 </template>
 
 <script>
@@ -110,7 +111,12 @@ h2{
    float: right;
    }
 
-
+.pageBackground{
+   background-image: url('@/src/images/content.png');
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+}
 
 
 </style>
