@@ -15,7 +15,9 @@
                <br>
             
 
-
+<v-btn @click="nextPage" color="white"> Sign in with Google </v-btn>
+               <br>
+               <br>
             <input class="username" placeholder="UserName"/>
             <input class="password" placeholder="Password"/>
 
@@ -45,10 +47,12 @@
 //import mainImage from '@/src/images/content.png'
 import { ref } from 'vue';
 
+
+
 export default {
    data(){
       return {
-      email: ''
+      email: '',
       }
    },
    methods: {
@@ -58,6 +62,8 @@ export default {
       SignUp(){
          console.log("I also work button")
       },
+      nextPage(){
+         this.$router.push('/print')
    }
 }
 
