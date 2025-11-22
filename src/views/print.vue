@@ -1,4 +1,5 @@
 <template> 
+<h1> Hello </h1>
 <div class="container">
     <v-text-field v-model="email" 
                   label="Email Address" 
@@ -19,7 +20,7 @@ import { ref } from 'vue';
 export default {
    data(){
       return {
-      
+      name: 'Print'
       }
    },
    methods: {

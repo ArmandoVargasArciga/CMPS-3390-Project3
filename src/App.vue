@@ -1,14 +1,4 @@
 
-
-<script setup>
-import HomePage from './views/HomePage.vue';
-
-
-</script>
-
-<template>
-  
-  <HomePage />
   
   <!--
   <h1>does this work now?</h1>
@@ -17,6 +7,19 @@ import HomePage from './views/HomePage.vue';
     documentation
   </p>
   -->
+<script setup>
+import HomePage from './views/HomePage.vue';
+import print from './views/print.vue';
+
+</script>
+
+<template>
+  
+  <HomePage />
+
+      
+        <RouterView />
+        
 </template>
 
 <style scoped></style>
