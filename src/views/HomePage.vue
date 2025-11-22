@@ -1,32 +1,12 @@
 <template> 
-<!--
-   <div class="background">
-      <h1> {{data5}} </h1>
-   </div>
--->
 <div class="pageBackground">
     <div class = "container"> 
-               <!--- Ape typing.com
-               <h2 class="title"> APE TYPE </h2> 
-               --->
-               <br>
-               <br>
-               <br>
-               <br>
-            
-
-<v-btn @click="nextPage" color="white"> Sign in with Google </v-btn>
-               <br>
-               <br>
+         <v-btn @click="nextPage" color="white" class="buttonGoogle"> Sign in with Google </v-btn>
+               <br>               <br>
             <input class="username" placeholder="UserName"/>
             <input class="password" placeholder="Password"/>
-
-
-            <!--These below dont work, youtube video clutch
-            <v-text-field label="Name" class="textBox"> </v-text-field>
-            <v-text-field label="Password" class="textBox"> </v-text-field>
-            -->
    </div> 
+
    <!--Email mabey-->
    <div class="inputLogin">
     <v-text-field v-model="email" 
@@ -37,9 +17,7 @@
          <v-btn @click="login"  class="login" > Login   </v-btn>
          <v-btn @click="SignUp" class="SignUp"> Sign Up </v-btn>
        </div>
-       
    </div>
-
 </div>
 </template>
 
@@ -53,6 +31,7 @@ export default {
    data(){
       return {
       email: '',
+      name: '',
       }
    },
    methods: {
@@ -64,12 +43,9 @@ export default {
       },
       nextPage(){
          this.$router.push('/print')
+      }
    }
 }
-
-
-
-
 </script>
 <!--Have classes names to organize the style of the front page. -->
 
