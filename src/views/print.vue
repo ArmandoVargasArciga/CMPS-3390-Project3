@@ -9,13 +9,7 @@
 
 <div class="container">             
   <!--API pull into the label or placeholder mabey-->
-   <v-textarea 
-               v-model="typing"
-               class="MainTextArea"  
-               placeholder="Type here..." 
-               rows="10"
-               cols="40"
-   />
+<textarea v-model="typing" class="MainTextArea" placeholder="Type here..." rows="10" cols="40"></textarea>
 
    <p> {{ typing }}</p>
    
@@ -28,7 +22,6 @@
 </template>
 
 <script>
-import { ref } from 'vue';
 
 export default {
    data(){
@@ -64,21 +57,32 @@ export default {
    height: 500px;
    margin: 20px auto;
    font-family: Verdana;
+   text-align: center;
+   pointer-events: auto;
 }
 
-v-textarea.MainTextArea {
-   display: flex;
-   justify-content: center;
-   width: 78%;
-   margin: auto;
-   min-height: 120px;
-   padding: 2%;
-   border: 12%;
-   font-size: 16px;
-   border-radius: 10px;
-   
-   border-color: black;
-   }
-
+.MainTextArea {
+  width: 80%;
+  min-height: 120px;
+  margin: 0 auto;
+  display: block;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 2px solid black;
+  padding: 10px;
+  resize: none;
+  outline: none;
+  background: white;
+}
+/* TEMP: overlay-buster 
+.debug-top {
+  position: fixed !important;
+  top: 100px; left: 50%; transform: translateX(-50%);
+  width: 80%;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+  background: #fff;
+}
+*/
    
 </style>
