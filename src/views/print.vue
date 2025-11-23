@@ -11,7 +11,7 @@
   <!--API pull into the label or placeholder mabey-->
 <textarea v-model="typing" class="MainTextArea" placeholder="Type here..." rows="10" cols="40"></textarea>
 
-   <p> {{ typing }}</p>
+  <!--<p> {{ typing }}</p>-->
    
    <!--<input class="username" placeholder=""/>-->
 </div> 
