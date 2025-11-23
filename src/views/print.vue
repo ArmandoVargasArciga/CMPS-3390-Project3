@@ -7,25 +7,22 @@
 
 </div>
 
-<!--
-<div class="container">
-    <v-text-field class="firstText"
-                  v-model="email" 
-                  label="Email Address" 
-                  placeholder="" 
-                  type="text"/>    
-</div>
--->
-
 <div class="container">             
-   <input class="username" placeholder=""/>
+  <!--API pull into the label or placeholder mabey-->
+   <v-textarea 
+               v-model="typing"
+               class="MainTextArea"  
+               placeholder="Type here..." 
+               rows="10"
+               cols="40"
+   />
+
+   <p> {{ typing }}</p>
+   
+   <!--<input class="username" placeholder=""/>-->
 </div> 
 
-
-
 <!--Have a label under the main text box to provide the text -->
-
-
     <!--- In the Placeholder you have have the input of the quote  --->
 
 </template>
@@ -36,11 +33,11 @@ import { ref } from 'vue';
 export default {
    data(){
       return {
-      name: 'Print'
+      typing: ''
       }
    },
    methods: {
-     
+     //have api function here probably 
    }
 }
 
@@ -64,21 +61,24 @@ export default {
 }
 
 .container{
-   height: 50ch;
+   height: 500px;
+   margin: 20px auto;
+   font-family: Verdana;
 }
 
-
-.username{
-   padding: 0%;
-   display: grid;
-   height: 50%;
-   width: 75%;
-   text-align: start;
-   border-radius: 10px;
-   justify-content: left;   
+v-textarea.MainTextArea {
+   display: flex;
+   justify-content: center;
+   width: 78%;
    margin: auto;
+   min-height: 120px;
+   padding: 2%;
+   border: 12%;
+   font-size: 16px;
+   border-radius: 10px;
+   
+   border-color: black;
    }
 
-
-
+   
 </style>
