@@ -9,10 +9,14 @@
 
    <!--Email mabey-->
    <div class="inputLogin">
-    <v-text-field v-model="email" 
+    
+    <!--
+      <v-text-field v-model="email" 
                   label="Email Address" 
                   placeholder="johnpork@gmail.com" 
                   type="email"/>
+
+   -->
        <div class="buttonposition">
          <v-btn @click="login"  class="login" > Login   </v-btn>
          <v-btn @click="SignUp" class="SignUp"> Sign Up </v-btn>
