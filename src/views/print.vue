@@ -7,10 +7,13 @@
 
 </div>
 
-<div class="container">            
-   <div class="quote"> {{ apiQuoteGet }}</div> 
+<div class="container"> 
+   
+   <div class="backGround"> 
+      {{ background }}
+   </div> 
   <!--API pull into the label or placeholder mabey-->
-      <textarea v-model="typing" class="MainTextArea" placeholder="" rows="10" ></textarea>
+      <textarea v-model="typingUser" class="typingUser" placeholder="" rows="10" ></textarea>
 </div> 
 
 <!--Have a label under the main text box to provide the text -->
@@ -23,8 +26,8 @@
 export default {
    data(){
       return {
-      apiQuoteGet: '',
-      typing: '',
+      typingUser: '',
+      background: '',
       }
    },
    async mounted(){
@@ -35,7 +38,7 @@ export default {
          try {
             const responce = await fetch("https://baconipsum.com/api/?type=all-meat&paras=2&format=text")
             const currentText = await responce.text();
-            this.apiQuoteGet = currentText;
+            this.background = currentText;
          } catch (error){
             console.log("Error Something is wrong", error);
       }
@@ -48,15 +51,38 @@ export default {
 </script>
 
 <style scoped>
-/*
-.firstText{
-   border: 1px solid #ccc;
-   padding: 8px 12px;
-   border-radius: 4px;
-   font-size: 16px;
-}*/
-.topContainer{
 
+.container {
+   position: relative;
+   width: 80%;
+   margin: 15% auto;
+}
+
+.backGround {
+   pointer-events: none;
+   white-space: pre-wrap;
+   position: absolute;
+   top: 0;
+   left: 0;
+   color: grey;
+   padding: 10px;
+}
+
+.typingUser {
+  position: relative;
+  background: transparent;
+  width: 100%;
+  min-height: 120px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 2px solid black;
+  padding: 10px;
+  resize: none;
+  color: black;
+  outline: none;
+}
+
+.topContainer{
    text-align: center;
    font-family: Verdana;
    font-size: x-large;
@@ -70,6 +96,7 @@ export default {
    pointer-events: auto;
 }
 
+/*
 .MainTextArea {
   width: 80%;
   min-height: 120px;
@@ -83,7 +110,7 @@ export default {
   outline: none;
   background: white;
 }
-/* TEMP: overlay-buster 
+ TEMP: overlay-buster 
 .debug-top {
   position: fixed !important;
   top: 100px; left: 50%; transform: translateX(-50%);
