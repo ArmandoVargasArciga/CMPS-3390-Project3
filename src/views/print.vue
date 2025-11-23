@@ -7,13 +7,10 @@
 
 </div>
 
-<div class="container">             
+<div class="container">            
+   <div class="quote"> {{ apiQuoteGet }}</div> 
   <!--API pull into the label or placeholder mabey-->
-<textarea v-model="typing" class="MainTextArea" placeholder="Type here..." rows="10" cols="40"></textarea>
-
-  <!--<p> {{ typing }}</p>-->
-   
-   <!--<input class="username" placeholder=""/>-->
+      <textarea v-model="typing" class="MainTextArea" placeholder="" rows="10" ></textarea>
 </div> 
 
 <!--Have a label under the main text box to provide the text -->
@@ -26,13 +23,25 @@
 export default {
    data(){
       return {
-      typing: ''
+      apiQuoteGet: '',
+      typing: '',
       }
    },
+   async mounted(){
+      await this.loadtext();
+   },
    methods: {
-     //have api function here probably 
+      async loadtext() {
+         try {
+            const responce = await fetch("https://baconipsum.com/api/?type=all-meat&paras=2&format=text")
+            const currentText = await responce.text();
+            this.apiQuoteGet = currentText;
+         } catch (error){
+            console.log("Error Something is wrong", error);
+      }
    }
-}
+   }
+};
 
 
 
