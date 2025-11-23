@@ -10,12 +10,12 @@
 <script setup>
 import HomePage from './views/HomePage.vue';
 import print from './views/print.vue';
-
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
   
-  <HomePage />
+  <!--<HomePage />--->
 
       
         <RouterView />

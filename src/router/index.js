@@ -10,14 +10,14 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: HomePage,
+      component: HomePage
     },
 
     // follow this format for other views
     {
       path: "/print",
-      name: "Print",
-      component: Print,
+      name: "print",
+      component: Print
     },
     
 
