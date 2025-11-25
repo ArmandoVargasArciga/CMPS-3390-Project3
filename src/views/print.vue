@@ -7,6 +7,15 @@
 
 </div>
 
+<div class="timerShown">
+   {{ time }}
+</div>
+
+<div class="WordsPERMiniute">
+   <h1> Your WPM</h1> 
+   {{  }}
+</div>
+
 <div class="container"> 
    
    <div class="backGround"> 
@@ -22,18 +31,28 @@
 </template>
 
 <script>
-
+ 
 export default {
    data(){
       return {
       typingUser: '',
       background: '',
+      time: 25,   // will be used for time
+      timer: null,
       }
    },
+   watch: {
+      typingUser(NValue, OValue){
+         if(NValue.length === 1){
+            this.BeginTimer();
+         }
+      }
+   },
+
    async mounted(){
       await this.loadtext();
    },
-   methods: {
+      methods: {
       async loadtext() {
          try {
             const responce = await fetch("https://baconipsum.com/api/?type=all-meat&paras=2&format=text")
@@ -42,6 +61,19 @@ export default {
          } catch (error){
             console.log("Error Something is wrong", error);
       }
+   },
+   
+   BeginTimer(){
+      if (this.timer) return;
+
+      this.timer = setInterval(() => {
+        if (this.time > 0) {
+         this.time--;
+         } else {
+            clearInterval(this.timer);
+         }
+      }, 1000 //every thousand is a 
+      )
    }
    }
 };
@@ -66,6 +98,9 @@ export default {
    left: 0;
    color: grey;
    padding: 10px;
+   font-size: 20px;
+   font-family: Verdana;
+   text-align: start;
 }
 
 .typingUser {
@@ -73,13 +108,14 @@ export default {
   background: transparent;
   width: 100%;
   min-height: 120px;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 10px;
   border: 2px solid black;
-  padding: 10px;
+  padding: 8px;
   resize: none;
   color: black;
   outline: none;
+  font-family: Verdana;
 }
 
 .topContainer{
@@ -94,6 +130,22 @@ export default {
    font-family: Verdana;
    text-align: center;
    pointer-events: auto;
+}
+
+.timerShown{
+   display: flex;
+   justify-content: center;
+   text-align: center;
+   font-size: 88px;
+   font-weight: bold;
+   color: bisque;
+   font-family: cursive;
+}
+
+.WordsPERMiniute{
+   display: flex;
+   justify-content: center;
+   
 }
 
 /*
