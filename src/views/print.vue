@@ -12,8 +12,7 @@
 </div>
 
 <div class="WordsPERMiniute">
-   <h1> Your WPM</h1> 
-   {{  }}
+   <h1> WPM: </h1> {{  }}
 </div>
 
 <div class="container"> 
@@ -72,9 +71,20 @@ export default {
          } else {
             clearInterval(this.timer);
          }
-      }, 1000 //every thousand is a 
+      }, 1000 //every thousand is the speed it decreases
+             // You can have the speed at 2000 and it will 
+             // decrease at the speed of .5x
       )
+   },
+
+   WordsPerMinuteCalculation(){
+//      if (this.timer === 0)
+         //for word in words:
+
+         
    }
+
+
    }
 };
 
@@ -145,7 +155,8 @@ export default {
 .WordsPERMiniute{
    display: flex;
    justify-content: center;
-   
+   font-family: cursive;
+
 }
 
 /*
