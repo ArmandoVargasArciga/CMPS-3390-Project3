@@ -8,11 +8,14 @@
 </div>
 
 <div class="timerShown">
-   {{ time }}
+   Time Left {{ time }}'s
 </div>
 
 <div class="WordsPERMiniute">
-   <h1> WPM: </h1> {{  }}
+   <h1> Words Per Meat (WPM):  </h1> 
+      <div class="formatWordCounter">
+       <h1>  {{ wordCounter }} </h1>
+      </div>
 </div>
 
 <div class="container"> 
@@ -36,18 +39,33 @@ export default {
       return {
       typingUser: '',
       background: '',
-      time: 25,   // will be used for time
+      time: 30,   // will be used for time
       timer: null,
-      }
+      wordCounter: 0,
+      ended: false,
+   }
    },
    watch: {
       typingUser(NValue, OValue){
          if(NValue.length === 1){
             this.BeginTimer();
+            NValue
          }
-      }
+      },
+      CheckingTyping(NValue, OValue){
+         for(let i = 0; i<this.typingUser.length; i++) {
+           const CorrectLetter = background.value[i]; 
+           const UserLetter = typingUser.value[i];
+                     
+            if(UserLetter[i] != background.value[i]){
+               setColorRed(UserLetter[i]);
+            } else if (UserLetter[i] === background.value[i]) {   
+               setColorGreen(UserLetter[i]);
+            }
+         } // you need to see how to change the color of your words that are 
+         //incorrect and correct by character. 
+      },
    },
-
    async mounted(){
       await this.loadtext();
    },
@@ -70,24 +88,22 @@ export default {
          this.time--;
          } else {
             clearInterval(this.timer);
+            this.WordsPerMinuteCalculation();
+            this.ended = true;
          }
       }, 1000 //every thousand is the speed it decreases
              // You can have the speed at 2000 and it will 
              // decrease at the speed of .5x
-      )
+      );
    },
 
    WordsPerMinuteCalculation(){
-//      if (this.timer === 0)
-         //for word in words:
-
-         
-   }
-
-
-   }
-};
-
+      const words = this.typingUser.trim().split(/\s+/) //condensed to counting words by spaces
+        
+         this.wordCounter = words.length;
+         } 
+      }
+   };
 
 
 </script>
@@ -159,7 +175,17 @@ export default {
 
 }
 
+
+
 /*
+.formatWordCounter{
+   font-size: 88px;
+   font-weight: bold;
+   color: bisque;
+   font-family: cursive;
+}
+
+
 .MainTextArea {
   width: 80%;
   min-height: 120px;
@@ -183,5 +209,6 @@ export default {
   background: #fff;
 }
 */
+
    
 </style>
