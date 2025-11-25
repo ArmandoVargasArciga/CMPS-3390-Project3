@@ -101,6 +101,7 @@ export default {
       const words = this.typingUser.trim().split(/\s+/) //condensed to counting words by spaces
         
          this.wordCounter = words.length;
+         this.wordCounter = this.wordCounter * 2;
          } 
       }
    };
