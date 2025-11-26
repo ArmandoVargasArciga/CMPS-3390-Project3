@@ -235,6 +235,7 @@ export default {
 
 .incorrect{
    color: red;   
+   font-weight: bold;
 }
 
 .textLeftOver{
