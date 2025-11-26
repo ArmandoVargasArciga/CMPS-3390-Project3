@@ -3,7 +3,7 @@
 
 <div class="topContainer">
 
-   <h2> Try your best </h2>
+   <h2> Try Your Best </h2>
 
 </div>
 
@@ -186,9 +186,10 @@ export default {
   border: 2px solid black;
   padding: 8px;
   resize: none;
-  color: black;
+  color: transparent;
   outline: none;
   font-family: Verdana;
+  caret-color: rgb(15, 104, 131);
 }
 
 .topContainer{
@@ -234,22 +235,22 @@ export default {
 }
 
 .incorrect{
-   color: red;   
-   font-weight: bold;
+   color: red;
+   font-family: Verdana;
+   font-size: 20px;   
 }
 
 .textLeftOver{
    color: grey;
-
 }
-
-
-/*
 
 .correct {
    color: black;
-   font-weight: bold;
-}
+} 
+
+
+/*
+add 
 
 .formatWordCounter{
    font-size: 88px;
