@@ -108,11 +108,11 @@ export default {
    }
 
 .pageBackground{
+   min-height: 96vh;
    background-image: url('@/images/content.png');
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
-   height: 800px;
 }
 
 .buttonposition{

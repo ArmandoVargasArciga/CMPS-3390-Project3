@@ -40,9 +40,6 @@
 
 
 <div class="container"> 
-   
-   
-
    <div class="correctOrIncorrect">
       <span 
          v-for="(item, i) in colorLetter"
@@ -50,7 +47,7 @@
          :class="item.status"
       >
       {{ item.char }}
-   </span>
+      </span>
    </div>
 
 
@@ -69,6 +66,7 @@
       {{ background }}
    </div>
     --->
+     <v-btn @click="leader" class="LeaderBoard"> LeaderBoard </v-btn>
 </div>
 </template>
 
@@ -178,9 +176,14 @@ export default {
          } else {
             this.timeElapsed = 30 - time--;
          }
+   },      
 
-      
-   }      
+   leader(){
+         //console.log("I work before")
+         this.$router.push('/leader')
+         //console.log("I work after")
+      },
+
 
    
       }
@@ -190,12 +193,13 @@ export default {
 </script>
 
 <style scoped>
-
+/*
 .container {
    position: relative;
    width: 80%;
    margin: 15% auto;
 }
+*/
 
 .backGround {
    pointer-events: none;
@@ -235,7 +239,9 @@ export default {
 }
 
 .container{
-   height: 500px;
+   position: relative;
+   width: 80%;
+   height: 150%;
    margin: 20px auto;
    font-family: Verdana;
    text-align: start;
@@ -285,9 +291,26 @@ export default {
 } 
 
 .backgroundColor{
+   min-height: 97vh;
    background-color: #000000;
+   background-size: auto;
+   background-position: center;
+   height: fit-content;
+   background-repeat: no-repeat ;
 }
 
+.LeaderBoard{
+   display: flex;
+   justify-content: center;
+   background-color: rgb(143, 138, 138);
+   color: black;
+   font-weight: bold;
+   padding: 10px 24px;
+   border-radius: 12px;
+   margin: auto;
+   width: 35%;
+   
+}
 
 /*
 add 
