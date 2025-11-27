@@ -17,6 +17,24 @@
        <h1>  {{ wordCounter }} </h1>
       </div>
 </div>
+<!--
+<div class="WordsPERMiniute">
+   <h1> Current (WPM):  </h1> 
+      <div class="formatWordCounter">
+       <h1>  {{ timeElapsed }} </h1>
+      </div>
+</div>
+-->
+<div class="WordsPERMiniute">
+   <h1> Time Elapsed:  </h1> 
+      <div class="formatWordCounter">
+       <h1>  {{ timeElapsed }} </h1>
+      </div>
+</div>
+
+
+
+
 
 <div class="container"> 
    
@@ -59,7 +77,7 @@ export default {
       typingUser: '',
       background: '',
 
-      time: 10,   // will be used for time
+      time: 60,   // will be used for time
       timer: null,
       timeElapsed: 0,
       
@@ -71,7 +89,7 @@ export default {
    },
    watch: {
       typingUser(NValue){
-         if(NValue.length === 0){
+         if(NValue.length != 0){
             this.BeginTimer();
          };
          this.CheckingTyping(NValue);
@@ -117,8 +135,9 @@ export default {
       const words = this.typingUser.trim().split(/\s+/) //condensed to counting words by spaces
         //this.wordCounter = words.length;
 
-         this.wordCounter = (words.length / this.timeElapsed) * 60; // actual accurate Current WPM
-         }, 
+         this.wordCounter = Math.round((words.length / this.timeElapsed) * 60); // actual accurate Current WPM
+         //Math.round(this.workCounter);   
+      }, 
 
    CheckingTyping(NValue){
             //make an array of colored letters that are false or true
@@ -150,8 +169,14 @@ export default {
 
             }, // you need to see how to change the color of your words that are 
             //incorrect and correct by character. 
-   AdaptiveString(){
-      //needs to be implemented
+   CurrentWordsPerMeat(){
+         if (this.timeElapsed/0==NaN || this.timeElapsed/0==Infinity){
+            this.timeElapsed = 0;
+         } else {
+            this.timeElapsed = 30 - time--;
+         }
+
+      
    }      
 
    
