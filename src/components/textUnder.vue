@@ -5,7 +5,7 @@ import { ref, watch } from 'vue';
 
 
 
-
+//this never got used
 watch(
 () => router.query.1
 )
@@ -21,4 +21,4 @@ fetch("https://loripsum.net/api/medium/plaintext")
 
 <style scoped>
 
-</style>
+</style> 
