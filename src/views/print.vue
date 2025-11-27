@@ -1,5 +1,8 @@
 <template> 
 <!--<h1> Hello </h1> -->
+<div class="backgroundColor">
+
+
 
 <div class="topContainer">
 
@@ -24,14 +27,14 @@
        <h1>  {{ timeElapsed }} </h1>
       </div>
 </div>
--->
+
 <div class="WordsPERMiniute">
    <h1> Time Elapsed:  </h1> 
       <div class="formatWordCounter">
        <h1>  {{ timeElapsed }} </h1>
       </div>
 </div>
-
+-->
 
 
 
@@ -66,7 +69,7 @@
       {{ background }}
    </div>
     --->
-
+</div>
 </template>
 
 <script>
@@ -214,7 +217,7 @@ export default {
   min-height: 120px;
   font-size: 20px;
   border-radius: 10px;
-  border: 2px solid black;
+  border: 2px solid bisque;
   padding: 8px;
   resize: none;
   color: transparent;
@@ -225,8 +228,10 @@ export default {
 
 .topContainer{
    text-align: center;
-   font-family: Verdana;
+   font-family: cursive;
    font-size: x-large;
+   color: bisque;
+
 }
 
 .container{
@@ -251,7 +256,7 @@ export default {
    display: flex;
    justify-content: center;
    font-family: cursive;
-
+   color: bisque;
 }
 
 .correctOrIncorrect {
@@ -276,8 +281,12 @@ export default {
 }
 
 .correct {
-   color: black;
+   color: beige;
 } 
+
+.backgroundColor{
+   background-color: #000000;
+}
 
 
 /*
