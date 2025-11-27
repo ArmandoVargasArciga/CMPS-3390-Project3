@@ -59,8 +59,9 @@ export default {
       typingUser: '',
       background: '',
 
-      time: 30,   // will be used for time
+      time: 10,   // will be used for time
       timer: null,
+      timeElapsed: 0,
       
       wordCounter: 0,
       ended: false,
@@ -70,11 +71,14 @@ export default {
    },
    watch: {
       typingUser(NValue){
-         if(NValue.length === 1){
+         if(NValue.length === 0){
             this.BeginTimer();
          };
          this.CheckingTyping(NValue);
-         },
+
+         this.WordsPerMinuteCalculation(NValue);
+      },
+        
       },
    
    async mounted(){
@@ -97,6 +101,7 @@ export default {
       this.timer = setInterval(() => {
         if (this.time > 0) {
          this.time--;
+         this.timeElapsed++;
          } else {
             clearInterval(this.timer);
             this.WordsPerMinuteCalculation();
@@ -110,8 +115,9 @@ export default {
 
    WordsPerMinuteCalculation(){
       const words = this.typingUser.trim().split(/\s+/) //condensed to counting words by spaces
-         this.wordCounter = words.length;
-         this.wordCounter = this.wordCounter * 2;
+        //this.wordCounter = words.length;
+
+         this.wordCounter = (words.length / this.timeElapsed) * 60; // actual accurate Current WPM
          }, 
 
    CheckingTyping(NValue){
