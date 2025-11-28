@@ -16,19 +16,17 @@ db.once('open', () => {
 });
 
 const ItemSchema = new mongoose.Schema({ name: String, age: Number });
-const Student = mongoose.model('Student', ItemSchema);
+const User = mongoose.model('Users', ItemSchema);
 
-
-
-app.get('/Student', async (req, res) => {
-  const Students = await Student.find();
+app.get('/User', async (req, res) => {
+  const Users = await User.find();
   res.json(items);
 });
 
-app.post('/Student', async (req, res) => {
-  const newStudent = new Student(req.body);
-  await newStudent.save();
-  res.json(newStudent);
+app.post('/User', async (req, res) => {
+  const newUser = new User(req.body);
+  await newUser.save();
+  res.json(newUser);
 });
 
 
