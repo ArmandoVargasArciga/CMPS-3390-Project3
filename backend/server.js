@@ -58,7 +58,8 @@ app.post('/login', async (req, res) => {
   const passwordMatch = await bcrypt.compare(password, user.password)
   if(!passwordMatch) return res.status(401).json({error: "Incorrect Password"})
 
-  
+  const token = jtw.sign({id: User._id}, 'secretKey', {expiresIn: '1h'})
+  res.json({token})
 })
 
 // Test
