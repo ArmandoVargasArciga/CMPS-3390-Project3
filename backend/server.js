@@ -15,8 +15,12 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-const ItemSchema = new mongoose.Schema({ name: String, age: Number });
-const User = mongoose.model('Users', ItemSchema);
+const UserSchema = new mongoose.Schema({ firstName: String,
+                                         lastName: String,
+                                         userName: String,
+                                         email: String,
+                                         password: String });
+const User = mongoose.model('Users', UserSchema);
 
 app.get('/User', async (req, res) => {
   const Users = await User.find();
@@ -28,8 +32,6 @@ app.post('/User', async (req, res) => {
   await newUser.save();
   res.json(newUser);
 });
-
-
 
 // Test
 app.get('/', (req, res) => {
