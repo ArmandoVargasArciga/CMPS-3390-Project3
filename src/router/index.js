@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import App from '@/App.vue'
 import HomePage from '@/views/HomePage.vue'
 import Print from '@/views/print.vue'
+import SignUp from '@/views/signUp.vue'
 
 
 const router = createRouter({
@@ -19,7 +20,11 @@ const router = createRouter({
       name: "print",
       component: Print
     },
-    
+    {
+      path: "/signUp",
+      name: "signUp",
+      component: SignUp
+    },
 
 
 
