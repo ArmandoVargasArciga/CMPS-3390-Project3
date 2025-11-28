@@ -29,7 +29,25 @@ app.get('/User', async (req, res) => {
 });
 
 app.post('/User', async (req, res) => {
-  const newUser = new User(req.body);
+  try {
+    const { firstName, lastName, userName, email, password} = req.body
+    const hashPassword = await bcrypt.hash(password, 10)
+
+    const newUser = new User({
+      firstName,
+      lastName,
+      userName,
+      email,
+      password: hashPassword
+    });
+    await newUser.save();
+    res.status(201).json({message: "User was created"});
+  } catch(e){
+    res.status(400).json({error: e.message})
+  }
+  const newUser = new User({
+
+  });
   await newUser.save();
   res.json(newUser);
 });
