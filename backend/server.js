@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bcrypt = require('bcript');
 
 const app = express();
 app.use(cors());
@@ -15,21 +16,41 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-const ItemSchema = new mongoose.Schema({ name: String, age: Number });
-const User = mongoose.model('Users', ItemSchema);
+const UserSchema = new mongoose.Schema({ firstName: String,
+                                         lastName: String,
+                                         userName: String,
+                                         email: String,
+                                         password: String });
+const User = mongoose.model('Users', UserSchema);
 
 app.get('/User', async (req, res) => {
   const Users = await User.find();
-  res.json(items);
+  res.json(Users);
 });
 
 app.post('/User', async (req, res) => {
-  const newUser = new User(req.body);
+  try {
+    const { firstName, lastName, userName, email, password} = req.body
+    const hashPassword = await bcrypt.hash(password, 10)
+
+    const newUser = new User({
+      firstName,
+      lastName,
+      userName,
+      email,
+      password: hashPassword
+    });
+    await newUser.save();
+    res.status(201).json({message: "User was created"});
+  } catch(e){
+    res.status(400).json({error: e.message})
+  }
+  const newUser = new User({
+
+  });
   await newUser.save();
   res.json(newUser);
 });
-
-
 
 // Test
 app.get('/', (req, res) => {
