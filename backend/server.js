@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcript');
+const jtw = require('jsonwebtoken');
 
 const app = express();
 app.use(cors());
@@ -28,6 +29,7 @@ app.get('/User', async (req, res) => {
   res.json(Users);
 });
 
+// Signup Page
 app.post('/User', async (req, res) => {
   try {
     const { firstName, lastName, userName, email, password} = req.body
@@ -45,12 +47,14 @@ app.post('/User', async (req, res) => {
   } catch(e){
     res.status(400).json({error: e.message})
   }
-  const newUser = new User({
-
-  });
-  await newUser.save();
-  res.json(newUser);
 });
+
+// Login Page
+app.post('/login', async (req, res) => {
+  const {email, password} = req.body;
+  const User = await User.findOne({email});
+  
+})
 
 // Test
 app.get('/', (req, res) => {
