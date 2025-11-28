@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const bcrypt = require('bcript');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(cors());
@@ -28,6 +29,7 @@ app.get('/User', async (req, res) => {
   res.json(Users);
 });
 
+// Signup Page
 app.post('/User', async (req, res) => {
   try {
     const { firstName, lastName, userName, email, password} = req.body
@@ -45,12 +47,20 @@ app.post('/User', async (req, res) => {
   } catch(e){
     res.status(400).json({error: e.message})
   }
-  const newUser = new User({
-
-  });
-  await newUser.save();
-  res.json(newUser);
 });
+
+// Login Page
+app.post('/login', async (req, res) => {
+  const {email, password} = req.body;
+  const user = await User.findOne({email});
+  if(!User) return res.status(401).json({error: "Incorrect Email"})
+  
+  const passwordMatch = await bcrypt.compare(password, user.password)
+  if(!passwordMatch) return res.status(401).json({error: "Incorrect Password"})
+
+  const token = jwt.sign({id: User._id}, 'secretKey', {expiresIn: '1h'})
+  res.json({token})
+})
 
 // Test
 app.get('/', (req, res) => {
