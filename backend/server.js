@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bcrypt = require('bcript');
 
 const app = express();
 app.use(cors());
@@ -24,7 +25,7 @@ const User = mongoose.model('Users', UserSchema);
 
 app.get('/User', async (req, res) => {
   const Users = await User.find();
-  res.json(items);
+  res.json(Users);
 });
 
 app.post('/User', async (req, res) => {
