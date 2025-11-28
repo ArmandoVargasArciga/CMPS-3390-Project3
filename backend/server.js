@@ -53,6 +53,7 @@ app.post('/User', async (req, res) => {
 app.post('/login', async (req, res) => {
   const {email, password} = req.body;
   const User = await User.findOne({email});
+  if(!User) return res.status(401).json({error: "Incorrect Email"})
   
 })
 
