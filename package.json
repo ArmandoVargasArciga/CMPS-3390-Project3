@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.13.2",
     "mongoose": "^8.19.3",
     "pinia": "^3.0.3",
     "spotify-api.js": "^9.2.5",
