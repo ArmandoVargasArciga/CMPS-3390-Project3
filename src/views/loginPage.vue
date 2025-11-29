@@ -14,7 +14,7 @@ const logIn = async() => {
             password: password.value
     })
     localStorage.setItem('token', res.data.token)
-    router.push('/')
+    router.push('/print')
     } catch(e){
         alert("Login failed: " + e.response.data.error)
     }

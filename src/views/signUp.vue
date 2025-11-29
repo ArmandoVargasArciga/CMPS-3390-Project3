@@ -1,12 +1,14 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 const firstName = ref('');
 const lastName = ref('');
 const username = ref('');
 const email = ref('');
 const password = ref('');
+const router = useRouter();
 
 const signUp = async() => {
     try{
@@ -18,6 +20,7 @@ const signUp = async() => {
             password: password.value
         })
         alert('Signup successful!')
+        router.push('/login')
     }catch(e){
         alert("Signup failed: " + e.response.data.error)
     }
