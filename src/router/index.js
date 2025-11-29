@@ -3,6 +3,7 @@ import App from '@/App.vue'
 import HomePage from '@/views/HomePage.vue'
 import Print from '@/views/print.vue'
 import SignUp from '@/views/signUp.vue'
+import LoginPage from '@/views/loginPage.vue'
 
 
 const router = createRouter({
@@ -24,6 +25,11 @@ const router = createRouter({
       path: "/signUp",
       name: "signUp",
       component: SignUp
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: LoginPage
     },
 
 
