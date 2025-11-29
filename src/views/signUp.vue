@@ -1,5 +1,27 @@
 <script setup>
+import { ref } from 'vue';
+import axios from 'axios';
 
+const firstName = ref('');
+const lastName = ref('');
+const username = ref('');
+const email = ref('');
+const password = ref('');
+
+const signUp = async() => {
+    try{
+        await axios.post("http://localhost:3000/User", {
+            firstName: firstName.value,
+            lastName: lastName.value,
+            userName: username.value,
+            email: email.value,
+            password: password.value
+        })
+        alert('Signup successful!')
+    }catch(e){
+        alert("Signup failed: " + e.response.data.error)
+    }
+}
 </script>
 
 <template>
@@ -16,7 +38,7 @@
         <input v-model="password"><br>
 
         <button type="submit">Sign Up!</button>
-        
+
     </form>
 </template>
 
