@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const axios = require('axios'); //Jason added this lets see if it breaks :)
 
 const app = express();
 app.use(cors());
@@ -71,3 +72,23 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
   console.log('Backend running at http://localhost:3000');
 });
+
+//Helper function to call Fingerprint API its all beneath so i know what to delete if i break everything
+async function getFingerprintEvent(eventId) {
+  const baseUrl = process.env.FPJS_BASE_URL || 'https://api.fpjs.io'
+  const secretKey = process.env.FPJS_SECRET_KEY
+
+  if (!secretKey) {
+    throw new Error('Missing FPJS_SECRET_KEY in .env')
+  }
+
+  const url = `${baseUrl}/v4/events/${encodeURIComponent(eventId)}`
+
+  const res = await axios.get(url, {
+    headers: {
+      Authorization: `Bearer ${secretKey}`,
+    },
+  })
+
+  return res.data
+}
