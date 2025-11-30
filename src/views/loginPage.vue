@@ -43,7 +43,7 @@ body{
     padding: 0px;
 }
 .container{
-    padding: 150px auto;
+    padding: 150px;
     text-align: center;
 }
 
@@ -53,7 +53,7 @@ form{
     box-shadow: 0px 1px 10px rgba(255, 228, 196, 0.856);
     width: 400px;
     height: 200px;
-    padding: 30px, 40px;
+    padding: 30px 40px;
     margin: 0 auto;
 }
 
@@ -75,6 +75,21 @@ input{
     padding: 10px;
     color: bisque;
     background-color: #222222d7;
+}
+
+button{
+    background: bisque;
+    color: black;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 80%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover{
+    background: #d3b792;
 }
 
 </style>
