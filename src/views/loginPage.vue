@@ -51,8 +51,8 @@ form{
     background-color: #222222d7;
     border-radius: 6px;
     box-shadow: 0px 1px 10px rgba(255, 228, 196, 0.856);
-    width: 400px;
-    height: 200px;
+    width: 30%;
+    height: 40%;
     padding: 30px 40px;
     margin: 0 auto;
 }
