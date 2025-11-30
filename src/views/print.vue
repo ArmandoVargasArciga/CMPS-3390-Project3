@@ -1,44 +1,18 @@
 <template> 
 <!--<h1> Hello </h1> -->
 <div class="backgroundColor">
-
-
-
    <div class="topContainer">
-
    <h2> Try Your Best </h2>
-
    </div>
-
    <div class="timerShown">
       Time Left {{ time }}'s
    </div>
-
-<div class="WordsPERMiniute">
-   <h1> Words Per Meat (WPM):  </h1> 
-      <div class="formatWordCounter">
-       <h1>  {{ wordCounter }} </h1>
-      </div>
-</div>
-<!--
-<div class="WordsPERMiniute">
-   <h1> Current (WPM):  </h1> 
-      <div class="formatWordCounter">
-       <h1>  {{ timeElapsed }} </h1>
-      </div>
-</div>
-
-<div class="WordsPERMiniute">
-   <h1> Time Elapsed:  </h1> 
-      <div class="formatWordCounter">
-       <h1>  {{ timeElapsed }} </h1>
-      </div>
-</div>
--->
-
-
-
-
+   <div class="WordsPERMiniute">
+      <h1> Words Per Meat (WPM):  </h1> 
+         <div class="formatWordCounter">
+         <h1>  {{ wordCounter }} </h1>
+         </div>
+   </div>
 <div class="container"> 
    <div class="correctOrIncorrect">
       <span 
@@ -201,17 +175,22 @@ export default {
 }
 */
 
-   .backGround {
-      pointer-events: none;
-      white-space: pre-wrap;
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: grey;
-      padding: 10px;
-      font-size: 20px;
-      font-family: Verdana;
-      text-align: start;
+.backGround {
+   pointer-events: none;
+   white-space: pre-wrap;
+   position: absolute;
+   top: 0;
+   left: 0;
+   color: grey;
+   padding: 10px;
+   font-size: 20px;
+   border-radius: 10px;
+   border: 2px solid black;
+   padding: 8px;
+   resize: none;
+   color: black;
+   outline: none;
+   font-family: Verdana;
    }
 
 .typingUser {
@@ -312,40 +291,5 @@ export default {
    
 }
 
-/*
-add 
 
-.formatWordCounter{
-   font-size: 88px;
-   font-weight: bold;
-   color: bisque;
-   font-family: cursive;
-}
-
-
-   .MainTextArea {
-   width: 80%;
-   min-height: 120px;
-   margin: 0 auto;
-   display: block;
-   font-size: 16px;
-   border-radius: 10px;
-   border: 2px solid black;
-   padding: 10px;
-   resize: none;
-   outline: none;
-   background: white;
-   }
-   TEMP: overlay-buster 
-   .debug-top {
-   position: fixed !important;
-   top: 100px; left: 50%; transform: translateX(-50%);
-   width: 80%;
-   z-index: 999999 !important;
-   pointer-events: auto !important;
-   background: #fff;
-   }
-   */
-
-      
    </style>

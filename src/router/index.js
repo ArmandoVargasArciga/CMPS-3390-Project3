@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import App from '@/App.vue'
 import HomePage from '@/views/HomePage.vue'
 import Print from '@/views/print.vue'
+import SignUp from '@/views/signUp.vue'
+import LoginPage from '@/views/loginPage.vue'
+
 //import leaderboard from '@/views/leaderboard.vue'
 import Leaderboard from '@/views/leaderboard.vue'
 
@@ -27,6 +30,16 @@ const router = createRouter({
       component: Leaderboard
     },
     
+    {
+      path: "/signUp",
+      name: "signUp",
+      component: SignUp
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: LoginPage
+    },
 
 
 

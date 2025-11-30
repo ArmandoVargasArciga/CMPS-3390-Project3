@@ -5,16 +5,22 @@ import { RouterView } from 'vue-router';
 const {data, error, isLoading, getData} = useVisitorData(
   {extendedResult: true},
   {immediate: false}
-);
+); 
+
+console.log('print here')
 </script>
 
+
 <template>
-    <div>
+    <div class="hide">
     <button @click='getData({ignoreCache: true})'>Get visitor data</button>
-    <p v-if="isLoading">Loading...</p>
-    <p v-else>VisitorId: {{ data?.visitorId }}</p>
-    <p v-if="error">{{ error.message }}</p>
-    <pre v-if="data">{{ data }}</pre>
+    <div class="hideData">
+      
+      <p v-if="isLoading">Loading...</p>
+      <p v-else>VisitorId: {{ data?.visitorId }}</p>
+      <p v-if="error">{{ error.message }}</p>
+      <pre v-if="data">{{ data }}</pre>
+    </div>
   </div>
 
   <!--<HomePage />--->
@@ -24,4 +30,11 @@ const {data, error, isLoading, getData} = useVisitorData(
         
 </template>
 
-<style scoped></style>
+<style scoped>
+
+.hideData{
+  color: black;
+  user-select: none;
+}
+
+</style>
