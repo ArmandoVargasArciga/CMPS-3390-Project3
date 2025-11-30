@@ -5,6 +5,8 @@ import Print from '@/views/print.vue'
 import SignUp from '@/views/signUp.vue'
 import LoginPage from '@/views/loginPage.vue'
 
+//import leaderboard from '@/views/leaderboard.vue'
+import Leaderboard from '@/views/leaderboard.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
