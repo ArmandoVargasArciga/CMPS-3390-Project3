@@ -216,7 +216,7 @@ export default {
          }
       },
 
-   } // end of methods
+   }
 
 }; // end of export default
 </script>
