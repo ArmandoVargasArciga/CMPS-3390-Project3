@@ -1,14 +1,28 @@
 <script setup>
 import {useVisitorData} from '@fingerprintjs/fingerprintjs-pro-vue-v3';
+import { useFingerprintStore } from './stores/fingerprint'  
 import { RouterView } from 'vue-router';
+import { watch } from 'vue'
+
+const fpStore = useFingerprintStore() //this creates store to make the backend work when we call 
 
 const {data, error, isLoading, getData} = useVisitorData(
   {extendedResult: true},
-  {immediate: false}
+  {immediate: true}
 );
+
+watch(
+  () => data.value,
+  (newVal) => {
+    if (newVal) {
+      fpStore.setFingerprintData(newVal)
+    }
+  }
+)
 </script>
 
 <template>
+  <!--
     <div>
     <button @click='getData({ignoreCache: true})'>Get visitor data</button>
     <p v-if="isLoading">Loading...</p>
@@ -16,7 +30,7 @@ const {data, error, isLoading, getData} = useVisitorData(
     <p v-if="error">{{ error.message }}</p>
     <pre v-if="data">{{ data }}</pre>
   </div>
-
+-->
   <!--<HomePage />--->
 
       

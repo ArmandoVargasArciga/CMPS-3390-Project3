@@ -92,3 +92,27 @@ async function getFingerprintEvent(eventId) {
 
   return res.data
 }
+
+app.post('/fp-event', async (req, res) => {
+  const { requestId } = req.body
+
+  if (!requestId) {
+    return res.status(400).json({ error: 'requestId is required' })
+  }
+
+  try {
+    const event = await getFingerprintEvent(requestId)
+
+    return res.json(event)
+  } catch (err) {
+    console.error('Error fetching Fingerprint event:', err.message)
+    return res.status(500).json({ error: 'Failed to fetch Fingerprint event' })
+  }
+})
+
+const PORT = 3000
+app.listen(PORT, () => {
+  console.log(`Backend listening on port ${PORT}`)
+})
+
+//everything between jason comments are what i added lets see how it goes
