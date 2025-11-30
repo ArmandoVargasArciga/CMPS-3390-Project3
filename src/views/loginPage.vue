@@ -22,7 +22,7 @@ const logIn = async() => {
 </script>
 
 <template>
-    <body>
+    <div class="container">
         <h1>Log In</h1>
         <form @submit.prevent="logIn">
             <label for="email">Email: </label>
@@ -33,9 +33,22 @@ const logIn = async() => {
             <button type="submit">Log in!</button>
 
         </form>
-    </body>
+    </div>
+        
 </template>
 
 <style scoped>
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.container{
+    padding: 150px auto;
+    text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
 
 </style>
