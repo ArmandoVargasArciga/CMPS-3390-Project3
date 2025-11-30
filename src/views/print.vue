@@ -220,6 +220,7 @@ export default {
       timerFromText(){
          if(this.timeElapsed == 60){
             alert("You are cannot type in here any more")
+            const typedText = Typed
          }
 
       }
