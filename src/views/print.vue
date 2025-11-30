@@ -1,9 +1,12 @@
-   <template> 
-   <!--<h1> Hello </h1> -->
+<template> 
+<!--<h1> Hello </h1> -->
+<div class="backgroundColor">
+
+
 
    <div class="topContainer">
 
-      <h2> Try your best </h2>
+   <h2> Try Your Best </h2>
 
    </div>
 
@@ -11,17 +14,32 @@
       Time Left {{ time }}'s
    </div>
 
-   <div class="WordsPERMiniute">
-      <h1> Words Per Meat (WPM):  </h1> 
-         <div class="formatWordCounter">
-         <h1>  {{ wordCounter }} </h1>
-         </div>
-   </div>
+<div class="WordsPERMiniute">
+   <h1> Words Per Meat (WPM):  </h1> 
+      <div class="formatWordCounter">
+       <h1>  {{ wordCounter }} </h1>
+      </div>
+</div>
+<!--
+<div class="WordsPERMiniute">
+   <h1> Current (WPM):  </h1> 
+      <div class="formatWordCounter">
+       <h1>  {{ timeElapsed }} </h1>
+      </div>
+</div>
+
+<div class="WordsPERMiniute">
+   <h1> Time Elapsed:  </h1> 
+      <div class="formatWordCounter">
+       <h1>  {{ timeElapsed }} </h1>
+      </div>
+</div>
+-->
+
+
+
 
 <div class="container"> 
-   
-   
-
    <div class="correctOrIncorrect">
       <span 
          v-for="(item, i) in colorLetter"
@@ -29,7 +47,7 @@
          :class="item.status"
       >
       {{ item.char }}
-   </span>
+      </span>
    </div>
 
 
@@ -48,8 +66,9 @@
       {{ background }}
    </div>
     --->
-
-   </template>
+     <v-btn @click="leader" class="LeaderBoard"> LeaderBoard </v-btn>
+</div>
+</template>
 
 <script>
  
@@ -59,8 +78,9 @@ export default {
       typingUser: '',
       background: '',
 
-      time: 30,   // will be used for time
+      time: 60,   // will be used for time
       timer: null,
+      timeElapsed: 0,
       
       wordCounter: 0,
       ended: false,
@@ -70,11 +90,14 @@ export default {
    },
    watch: {
       typingUser(NValue){
-         if(NValue.length === 1){
+         if(NValue.length != 0){
             this.BeginTimer();
          };
          this.CheckingTyping(NValue);
-         },
+
+         this.WordsPerMinuteCalculation(NValue);
+      },
+        
       },
    
    async mounted(){
@@ -97,6 +120,7 @@ export default {
       this.timer = setInterval(() => {
         if (this.time > 0) {
          this.time--;
+         this.timeElapsed++;
          } else {
             clearInterval(this.timer);
             this.WordsPerMinuteCalculation();
@@ -110,9 +134,11 @@ export default {
 
    WordsPerMinuteCalculation(){
       const words = this.typingUser.trim().split(/\s+/) //condensed to counting words by spaces
-         this.wordCounter = words.length;
-         this.wordCounter = this.wordCounter * 2;
-         }, 
+        //this.wordCounter = words.length;
+
+         this.wordCounter = Math.round((words.length / this.timeElapsed) * 60); // actual accurate Current WPM
+         //Math.round(this.workCounter);   
+      }, 
 
    CheckingTyping(NValue){
             //make an array of colored letters that are false or true
@@ -144,9 +170,20 @@ export default {
 
             }, // you need to see how to change the color of your words that are 
             //incorrect and correct by character. 
-   AdaptiveString(){
-      //needs to be implemented
-   }      
+   CurrentWordsPerMeat(){
+         if (this.timeElapsed/0==NaN || this.timeElapsed/0==Infinity){
+            this.timeElapsed = 0;
+         } else {
+            this.timeElapsed = 30 - time--;
+         }
+   },      
+
+   leader(){
+         //console.log("I work before")
+         this.$router.push('/leader')
+         //console.log("I work after")
+      },
+
 
    
       }
@@ -155,13 +192,14 @@ export default {
 
    </script>
 
-   <style scoped>
-
-   .container {
-      position: relative;
-      width: 80%;
-      margin: 15% auto;
-   }
+<style scoped>
+/*
+.container {
+   position: relative;
+   width: 80%;
+   margin: 15% auto;
+}
+*/
 
    .backGround {
       pointer-events: none;
@@ -176,29 +214,34 @@ export default {
       text-align: start;
    }
 
-   .typingUser {
-   position: relative;
-   background: transparent;
-   width: 100%;
-   min-height: 120px;
-   font-size: 20px;
-   border-radius: 10px;
-   border: 2px solid black;
-   padding: 8px;
-   resize: none;
-   color: black;
-   outline: none;
-   font-family: Verdana;
-   }
+.typingUser {
+  position: relative;
+  background: transparent;
+  width: 100%;
+  min-height: 120px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 2px solid bisque;
+  padding: 8px;
+  resize: none;
+  color: transparent;
+  outline: none;
+  font-family: Verdana;
+  caret-color: rgb(15, 104, 131);
+}
 
-   .topContainer{
-      text-align: center;
-      font-family: Verdana;
-      font-size: x-large;
-   }
+.topContainer{
+   text-align: center;
+   font-family: cursive;
+   font-size: x-large;
+   color: bisque;
+
+}
 
 .container{
-   height: 500px;
+   position: relative;
+   width: 80%;
+   height: 150%;
    margin: 20px auto;
    font-family: Verdana;
    text-align: start;
@@ -215,12 +258,12 @@ export default {
       font-family: cursive;
    }
 
-   .WordsPERMiniute{
-      display: flex;
-      justify-content: center;
-      font-family: cursive;
-
-   }
+.WordsPERMiniute{
+   display: flex;
+   justify-content: center;
+   font-family: cursive;
+   color: bisque;
+}
 
 .correctOrIncorrect {
   position: absolute;
@@ -234,22 +277,43 @@ export default {
 }
 
 .incorrect{
-   color: red;   
-   font-weight: bold;
+   color: red;
+   font-family: Verdana;
+   font-size: 20px;   
 }
 
 .textLeftOver{
    color: grey;
-
 }
-
-
-/*
 
 .correct {
+   color: beige;
+} 
+
+.backgroundColor{
+   min-height: 97vh;
+   background-color: #000000;
+   background-size: auto;
+   background-position: center;
+   height: fit-content;
+   background-repeat: no-repeat ;
+}
+
+.LeaderBoard{
+   display: flex;
+   justify-content: center;
+   background-color: rgb(143, 138, 138);
    color: black;
    font-weight: bold;
+   padding: 10px 24px;
+   border-radius: 12px;
+   margin: auto;
+   width: 35%;
+   
 }
+
+/*
+add 
 
 .formatWordCounter{
    font-size: 88px;
