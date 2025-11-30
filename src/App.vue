@@ -30,11 +30,16 @@ console.log('print here')
         
 </template>
 
-<style scoped>
+<style>
 
 .hideData{
   color: black;
   user-select: none;
+}
+
+body{
+    background-color: black;
+    color: bisque;
 }
 
 </style>
