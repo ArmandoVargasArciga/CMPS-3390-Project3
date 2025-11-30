@@ -12,8 +12,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fingerprintjs/fingerprintjs-pro-vue-v3": "^1.5.0",
+    "axios": "^1.13.2",
     "mongoose": "^8.19.3",
     "pinia": "^3.0.3",
+    "spotify-api.js": "^9.2.5",
     "vue": "^3.5.22",
     "vue-router": "^4.6.3"
   },

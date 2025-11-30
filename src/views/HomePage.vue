@@ -29,8 +29,6 @@
 //import mainImage from '@/src/images/content.png'
 import { ref } from 'vue';
 
-
-
 export default {
    data(){
       return {
@@ -41,9 +39,11 @@ export default {
    methods: {
       login(){
          console.log("I work button")
+         this.$router.push('/login')
       },
       SignUp(){
          console.log("I also work button")
+         this.$router.push('/signUp')
       },
       nextPage(){
          this.$router.push('/print')
