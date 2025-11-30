@@ -53,12 +53,12 @@ app.post('/User', async (req, res) => {
 app.post('/login', async (req, res) => {
   const {email, password} = req.body;
   const user = await User.findOne({email});
-  if(!User) return res.status(401).json({error: "Incorrect Email"})
+  if(!user) return res.status(401).json({error: "Incorrect Email"})
   
   const passwordMatch = await bcrypt.compare(password, user.password)
   if(!passwordMatch) return res.status(401).json({error: "Incorrect Password"})
 
-  const token = jwt.sign({id: User._id}, 'secretKey', {expiresIn: '1h'})
+  const token = jwt.sign({id: user._id}, 'secretKey', {expiresIn: '1h'})
   res.json({token})
 })
 

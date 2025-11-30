@@ -23,7 +23,7 @@ const logIn = async() => {
 
 <template>
     <div class="container">
-        <h1>Log In</h1>
+        <h1>Log In!</h1>
         <form @submit.prevent="logIn">
             <label for="email">Email: </label>
             <input v-model="email"><br>

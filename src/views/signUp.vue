@@ -29,6 +29,7 @@ const signUp = async() => {
 
 <template>
     <div class="container">
+        <h1>Sign Up!</h1>
         <form @submit.prevent="signUp">
             <label for="firstName">First Name: </label>
             <input v-model="firstName"><br>
