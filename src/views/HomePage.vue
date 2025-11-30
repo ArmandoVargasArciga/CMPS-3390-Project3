@@ -3,23 +3,15 @@
 <div class="pageBackground">
     <div class = "container"> 
          <v-btn @click="nextPage" color="white" class="buttonGoogle"> Sign in with Google </v-btn>
-               <br>               <br>
-            <input class="username" placeholder="UserName"/>
-            <input class="password" placeholder="Password"/>
+          
    </div> 
 
-   <!--Email mabey-->
+    
    <div class="inputLogin">
     
-    <!--
-      <v-text-field v-model="email" 
-                  label="Email Address" 
-                  placeholder="johnpork@gmail.com" 
-                  type="email"/>
-
-   -->
        <div class="buttonposition">
          <v-btn @click="login"  class="login" > Login   </v-btn>
+         <br>
          <v-btn @click="SignUp" class="SignUp"> Sign Up </v-btn>
        </div>
    </div>
@@ -68,16 +60,11 @@ html, body {
    height: 100%;
    width: 100%;
 }
-
-
 </style>
 
 
 
 <style scoped> 
-
-
-
 .container{
    height: 5%;
    width: auto;
@@ -104,28 +91,36 @@ html, body {
    background-color: black;
    color: white;
    font-weight: bold;
-   padding: 10px 24px;
+   font-size: x-large;
+   display: flex;
+   justify-content: center;
+   margin: auto;
+   width: 15%;
+   padding: 20px 24px;
    border-radius: 12px;
-   float: left;
-   margin-left: 25%;
    }
 
    .SignUp{
    background-color: black;
    color: white;
    font-weight: bold;
-   padding: 10px 24px;
+   font-size: x-large;
+   display: flex;
+   justify-content: center;
+   margin: auto;
+   width: 15%;
+   padding: 20px 24px;
    border-radius: 12px;
-   float: right;
-   margin-right: 25%;
    }
 
 .pageBackground{
    min-height: 100vh;
-   background-image: url('@/images/content.png');
+   background-image: url('@/images/final Pork.png');
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
+   background-color: #0f0f0f;
+   object-fit: contain;
 }
 
 .buttonposition{
