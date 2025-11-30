@@ -1,26 +1,18 @@
 <template> 
 <!--<h1> Hello </h1> -->
 <div class="backgroundColor">
-
-
-
    <div class="topContainer">
-
    <h2> Try Your Best </h2>
-
    </div>
-
    <div class="timerShown">
       Time Left {{ time }}'s
    </div>
-
    <div class="WordsPERMiniute">
       <h1> Words Per Meat (WPM):  </h1> 
          <div class="formatWordCounter">
          <h1>  {{ wordCounter }} </h1>
          </div>
    </div>
-
 <div class="container"> 
    <div class="correctOrIncorrect">
       <span 
