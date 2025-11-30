@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fingerprintjs/fingerprintjs-pro-vue-v3": "^1.5.0",
     "axios": "^1.13.2",
     "mongoose": "^8.19.3",
     "pinia": "^3.0.3",
