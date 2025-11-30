@@ -1,7 +1,7 @@
 <script setup>
 import HomePage from './views/HomePage.vue';
 import print from './views/print.vue';
-import {useVisitorData} from '@fingerprintjs/fingerprintjs-pro-vue-v3';
+import {useVisitorData} from '@/fingerprintjs/fingerprintjs-pro-vue-v3';
 import { RouterView } from 'vue-router';
 
 const {data, error, isLoading, getData} = useVisitorData(
