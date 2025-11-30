@@ -47,8 +47,34 @@ body{
     text-align: center;
 }
 
+form{
+    background-color: #222222d7;
+    border-radius: 6px;
+    box-shadow: 0px 1px 10px rgba(255, 228, 196, 0.856);
+    width: 400px;
+    height: 200px;
+    padding: 30px, 40px;
+    margin: 0 auto;
+}
+
 h1 {
   margin-bottom: 20px;
+}
+
+label{
+    display: block;
+    margin: 0px 0px 5px 0px;
+    font-weight: bold;
+}
+
+input{
+    border:  2px solid bisque;
+    border-radius: 4px;
+    width: 80%;
+    margin: 0px 0px 15px 0px;
+    padding: 10px;
+    color: bisque;
+    background-color: #222222d7;
 }
 
 </style>
