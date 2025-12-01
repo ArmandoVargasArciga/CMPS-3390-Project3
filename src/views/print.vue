@@ -60,47 +60,74 @@
 </template>
 
 <script>
-import axios from 'axios'                             
+import '../styles/printvue.css'
 import { useFingerprintStore } from '../stores/fingerprint'
+import {
+  fetchBackgroundText,
+  calculateWPM,
+  buildColorLetter,
+  postTypingResult,
+} from '../controllers/typingController'
 
 export default {
-   data(){
-      return {
+  data() {
+    return {
       typingUser: '',
       background: '',
 
-      time: 60,   // will be used for time
+      time: 60, // will be used for time
       timer: null,
       timeElapsed: 0,
-      
+
       wordCounter: 0,
       ended: false,
 
       colorLetter: [],
+<<<<<<< HEAD
 
       stateOfButton: false,
+=======
+    }
+  },
+
+  computed: {
+    fpStore() {
+      return useFingerprintStore()
+    },
+    visitorId() {
+      return this.fpStore.visitorId
+    },
+    requestId() {
+      return this.fpStore.requestId
+    },
+  },
+
+  watch: {
+    typingUser(NValue) {
+      if (NValue.length != 0) {
+        this.BeginTimer()
+>>>>>>> 3d1e2edde05ee77e3817ac25021bcee7f35967fd
       }
-   },
+      this.CheckingTyping(NValue)
+      this.WordsPerMinuteCalculation()
+    },
+  },
 
-   computed: {
-      fpStore() {
-         return useFingerprintStore()
-      },
-      visitorId() {
-         return this.fpStore.visitorId
-      },
-      requestId() {
-         return this.fpStore.requestId
-      },
-   },
+  async mounted() {
+    await this.loadtext()
+  },
 
-   watch: {
-      typingUser(NValue){
-         if(NValue.length != 0){
-            this.BeginTimer();
-         };
-         this.CheckingTyping(NValue);
+  methods: {
+    async loadtext() {
+      try {
+        const currentText = await fetchBackgroundText()
+        this.background = currentText
+      } catch (error) {
+        console.log('Error Something is wrong', error)
+      }
+    },
 
+<<<<<<< HEAD
          this.WordsPerMinuteCalculation(NValue);
 
          //this.timerFromText(NValue);
@@ -111,74 +138,45 @@ export default {
    async mounted(){
       await this.loadtext();
    },
+=======
+    BeginTimer() {
+      if (this.timer) return
+>>>>>>> 3d1e2edde05ee77e3817ac25021bcee7f35967fd
 
-   methods: {
+      this.timer = setInterval(() => {
+        if (this.time > 0) {
+          this.time--
+          this.timeElapsed++
+        } else {
+          clearInterval(this.timer)
+          this.ended = true
+          this.WordsPerMinuteCalculation()
+          this.sendResultToServer() //this sends the score to fingerprint
+        }
+      }, 1000)
+    },
 
-      async loadtext() {
-         try {
-            const responce = await fetch("https://baconipsum.com/api/?type=all-meat&paras=2&format=text")
-            const currentText = await responce.text();
-            this.background = currentText;
-         } catch (error){
-            console.log("Error Something is wrong", error);
-         }
-      },
-   
-      BeginTimer(){
-         if (this.timer) return;
+    WordsPerMinuteCalculation() {
+      this.wordCounter = calculateWPM(this.typingUser, this.timeElapsed)
+    },
 
-         this.timer = setInterval(() => {
-           if (this.time > 0) {
-              this.time--;
-              this.timeElapsed++;
-           } else {
-              clearInterval(this.timer);
-              this.ended = true
-              this.WordsPerMinuteCalculation()
-              this.sendResultToServer()   // sends score to fingerprint
-           }
-         }, 1000);
-      },
+    CheckingTyping(NValue) {
+      this.colorLetter = buildColorLetter(NValue, this.background)
+    },
 
-      WordsPerMinuteCalculation(){
-         const words = this.typingUser.trim().split(/\s+/) //condensed to counting words by spaces
-           //this.wordCounter = words.length;
-         if (this.timeElapsed > 0) {
-            this.wordCounter = Math.round((words.length / this.timeElapsed) * 60); // actual accurate Current WPM
-            //Math.round(this.workCounter); 
-         } else {
-            this.wordCounter = 0
-         }  
-      }, 
+    CurrentWordsPerMeat() {
+      if (this.timeElapsed / 0 == NaN || this.timeElapsed / 0 == Infinity) {
+        this.timeElapsed = 0
+      } else {
+        this.timeElapsed = 30 - time--
+      }
+    },
 
-      CheckingTyping(NValue){
-         //make an array of colored letters that are false or true
-         this.colorLetter = [];
-         for(let i = 0; i<NValue.length; i++) {
-           const Correct = this.background[i]; 
-           const Typed = NValue[i];
-                      
-           let status;
-         
-            if(Typed != Correct){
-               status = "incorrect";
-            } else {
-               status = "correct"
-            }
-         
-            this.colorLetter.push({
-               char: Typed,
-               status: status
-            });
-         }
-         //starts from where the user left off
-         for(let i = NValue.length; i<this.background.length; i++){
-            this.colorLetter.push({
-               char: this.background[i],
-               status: "textLeftOver"
-            })
-         }
+    leader() {
+      this.$router.push('/leader')
+    },
 
+<<<<<<< HEAD
       }, // you need to see how to change the color of your words that are 
          //incorrect and correct by character. 
 
@@ -353,3 +351,20 @@ export default {
 
 
    </style>
+=======
+    async sendResultToServer() {
+      try {
+        await postTypingResult({
+          wpm: this.wordCounter,
+          visitorId: this.visitorId,
+          requestId: this.requestId,
+        })
+        console.log('Result sent to server')
+      } catch (e) {
+        console.error('Failed to send result:', e)
+      }
+    },
+  },
+}
+</script>
+>>>>>>> 3d1e2edde05ee77e3817ac25021bcee7f35967fd
