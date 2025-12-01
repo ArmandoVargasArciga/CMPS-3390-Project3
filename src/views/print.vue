@@ -67,7 +67,6 @@ export default {
       ended: false,
 
       colorLetter: [],
-
       stateOfButton: false,
       authMessage: ''
       }
