@@ -45,13 +45,14 @@
 </div> 
 
      <v-btn @click="leader" class="LeaderBoard"> LeaderBoard </v-btn>
+     <v-btn @click="logout" class="logoutButton"> logout </v-btn>
 </div>
 </template>
 
 <script>
 import { useTransitionState } from 'vue';
 import { fpjsPlugin } from '@fingerprintjs/fingerprintjs-pro-vue-v3'
- 
+import axios from 'axios'
 export default {
    data(){
       return {
@@ -66,8 +67,8 @@ export default {
       ended: false,
 
       colorLetter: [],
-
       stateOfButton: false,
+      authMessage: ''
       }
    },
    watch: {
@@ -83,9 +84,24 @@ export default {
       },
       },
    async mounted(){
+      try{
+         const token = localStorage.getItem('token')
+         console.log(token)
+         const res = await axios.get("http://localhost:3000/print", {
+            headers: {Authorization: 'Bearer ' + token}
+         })
+         this.authMessage = res.data.message
+      }catch(e){
+         this.authMessage = "Access denied"
+         this.$router.push('/login')
+      }
       await this.loadtext();
    },
       methods: {
+      logout(){
+            localStorage.removeItem('token')
+            this.$router.push('/login')
+         },
       async loadtext() {
          try {
             const responce = await fetch("https://baconipsum.com/api/?type=all-meat&paras=2&format=text")
