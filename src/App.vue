@@ -49,4 +49,10 @@ watch(
   user-select: none;
 }
 
+body{
+  background-color: black;
+  color: bisque;
+  
+}
+
 </style>
