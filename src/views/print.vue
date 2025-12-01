@@ -83,10 +83,8 @@ export default {
       ended: false,
 
       colorLetter: [],
-<<<<<<< HEAD
 
       stateOfButton: false,
-=======
     }
   },
 
@@ -106,7 +104,6 @@ export default {
     typingUser(NValue) {
       if (NValue.length != 0) {
         this.BeginTimer()
->>>>>>> 3d1e2edde05ee77e3817ac25021bcee7f35967fd
       }
       this.CheckingTyping(NValue)
       this.WordsPerMinuteCalculation()
@@ -126,22 +123,10 @@ export default {
         console.log('Error Something is wrong', error)
       }
     },
-
-<<<<<<< HEAD
-         this.WordsPerMinuteCalculation(NValue);
-
-         //this.timerFromText(NValue);
       },
-        
-   },
-   
-   async mounted(){
-      await this.loadtext();
-   },
-=======
-    BeginTimer() {
+      
+   BeginTimer() {
       if (this.timer) return
->>>>>>> 3d1e2edde05ee77e3817ac25021bcee7f35967fd
 
       this.timer = setInterval(() => {
         if (this.time > 0) {
@@ -176,17 +161,17 @@ export default {
       this.$router.push('/leader')
     },
 
-<<<<<<< HEAD
-      }, // you need to see how to change the color of your words that are 
+       // you need to see how to change the color of your words that are 
          //incorrect and correct by character. 
-
+         /*
       CurrentWordsPerMeat(){
-         if (this.timeElapsed/0===NaN || this.timeElapsed/0===Infinity){
+         if (this.timeElapsed/0===isNaN() || this.timeElapsed/0===Infinity){
             this.timeElapsed = 0;
          } else {
             this.timeElapsed++;
          }
-      },      
+
+         */      
 
       leader(){
          this.$router.push('/leader')
@@ -214,12 +199,10 @@ export default {
       },
 
       musicTempo(){
-
+         //add music here         
       }
 
-   },
-      
-}
+};
 // end of export default
 </script>
 
@@ -351,20 +334,3 @@ export default {
 
 
    </style>
-=======
-    async sendResultToServer() {
-      try {
-        await postTypingResult({
-          wpm: this.wordCounter,
-          visitorId: this.visitorId,
-          requestId: this.requestId,
-        })
-        console.log('Result sent to server')
-      } catch (e) {
-        console.error('Failed to send result:', e)
-      }
-    },
-  },
-}
-</script>
->>>>>>> 3d1e2edde05ee77e3817ac25021bcee7f35967fd
