@@ -101,6 +101,7 @@ export default {
          this.$router.push('/login')
       }
       await this.loadtext();
+      initializeMusic();
    },
       methods: {
       logout(){
