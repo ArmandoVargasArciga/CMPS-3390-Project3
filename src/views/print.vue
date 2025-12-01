@@ -1,44 +1,33 @@
 <template> 
 <!--<h1> Hello </h1> -->
 <div class="backgroundColor">
-
-
-
    <div class="topContainer">
-
    <h2> Try Your Best </h2>
-
    </div>
+    <!-- 
+   <div class="hide">
+    <button @click='getData({ignoreCache: true})'>Click Me Before You Start Typing</button>
+    
+     
+      <p v-if="isLoading">Loading...</p>
+      
+
+      <p v-else>VisitorId: {{ data?.visitorId }}</p>
+      <p v-if="error">{{ error.message }}</p>
+      <pre v-if="data">{{ data }}</pre>
+   
+    
+  </div> -->
 
    <div class="timerShown">
       Time Left {{ time }}'s
    </div>
-
-<div class="WordsPERMiniute">
-   <h1> Words Per Meat (WPM):  </h1> 
-      <div class="formatWordCounter">
-       <h1>  {{ wordCounter }} </h1>
-      </div>
-</div>
-<!--
-<div class="WordsPERMiniute">
-   <h1> Current (WPM):  </h1> 
-      <div class="formatWordCounter">
-       <h1>  {{ timeElapsed }} </h1>
-      </div>
-</div>
-
-<div class="WordsPERMiniute">
-   <h1> Time Elapsed:  </h1> 
-      <div class="formatWordCounter">
-       <h1>  {{ timeElapsed }} </h1>
-      </div>
-</div>
--->
-
-
-
-
+   <div class="WordsPERMiniute">
+      <h1> Words Per Meat (WPM):  </h1> 
+         <div class="formatWordCounter">
+         <h1>  {{ wordCounter }} </h1>
+         </div>
+   </div>
 <div class="container"> 
    <div class="correctOrIncorrect">
       <span 
@@ -67,6 +56,7 @@
    </div>
     -->
      <v-btn @click="leader" class="LeaderBoard"> LeaderBoard </v-btn>
+     <v-btn @click="logout" class="logoutButton"> logout </v-btn>
 </div>
 </template>
 

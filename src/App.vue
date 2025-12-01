@@ -21,14 +21,18 @@ watch(
 )
 </script>
 
+
 <template>
   <!--
     <div>
     <button @click='getData({ignoreCache: true})'>Get visitor data</button>
-    <p v-if="isLoading">Loading...</p>
-    <p v-else>VisitorId: {{ data?.visitorId }}</p>
-    <p v-if="error">{{ error.message }}</p>
-    <pre v-if="data">{{ data }}</pre>
+    <div class="hideData">
+      
+      <p v-if="isLoading">Loading...</p>
+      <p v-else>VisitorId: {{ data?.visitorId }}</p>
+      <p v-if="error">{{ error.message }}</p>
+      <pre v-if="data">{{ data }}</pre>
+    </div>
   </div>
 -->
   <!--<HomePage />--->
@@ -38,4 +42,17 @@ watch(
         
 </template>
 
-<style scoped></style>
+<style scoped>
+
+.hideData{
+  color: black;
+  user-select: none;
+}
+
+body{
+  background-color: black;
+  color: bisque;
+  
+}
+
+</style>

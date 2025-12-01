@@ -1,31 +1,26 @@
 <template> 
+
 <div class="pageBackground">
     <div class = "container"> 
          <v-btn @click="nextPage" color="white" class="buttonGoogle"> Sign in with Google </v-btn>
-               <br>               <br>
-            <input class="username" placeholder="UserName"/>
-            <input class="password" placeholder="Password"/>
+          
    </div> 
 
-   <!--Email mabey-->
+    
    <div class="inputLogin">
     
-    <!--
-      <v-text-field v-model="email" 
-                  label="Email Address" 
-                  placeholder="johnpork@gmail.com" 
-                  type="email"/>
-
-   -->
        <div class="buttonposition">
          <v-btn @click="login"  class="login" > Login   </v-btn>
+         <br>
          <v-btn @click="SignUp" class="SignUp"> Sign Up </v-btn>
        </div>
    </div>
 </div>
+
 </template>
 
 <script>
+
 //import mainImage from '@/src/images/content.png'
 import { ref } from 'vue';
 
@@ -53,22 +48,28 @@ export default {
 </script>
 <!--Have classes names to organize the style of the front page. -->
 
+<style>
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+html, body {
+   margin: 0;
+   padding: 0;
+   height: 100%;
+   width: 100%;
+}
+</style>
+
+
 
 <style scoped> 
-
-/*h2{
-   text-align: center;
-   font-family: Verdana;
-   font-weight: 900;
-   color: gold;
-   text-shadow: 1px 1px 2px palevioletred;
-   font-size: xxx-large;
-}*/
-
 .container{
    height: 5%;
    width: auto;
-   margin-top: 01%;
+   margin-top: 0%;
    padding: 10%;
 }
  .username{
@@ -91,28 +92,36 @@ export default {
    background-color: black;
    color: white;
    font-weight: bold;
-   padding: 10px 24px;
+   font-size: x-large;
+   display: flex;
+   justify-content: center;
+   margin: auto;
+   width: 15%;
+   padding: 20px 24px;
    border-radius: 12px;
-   float: left;
-   margin-left: 25%;
    }
 
    .SignUp{
    background-color: black;
    color: white;
    font-weight: bold;
-   padding: 10px 24px;
+   font-size: x-large;
+   display: flex;
+   justify-content: center;
+   margin: auto;
+   width: 15%;
+   padding: 20px 24px;
    border-radius: 12px;
-   float: right;
-   margin-right: 25%;
    }
 
 .pageBackground{
-   min-height: 96vh;
-   background-image: url('@/images/content.png');
+   min-height: 100vh;
+   background-image: url('@/images/final Pork.png');
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
+   background-color: #0f0f0f;
+   object-fit: contain;
 }
 
 .buttonposition{
