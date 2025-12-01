@@ -4,6 +4,21 @@
    <div class="topContainer">
    <h2> Try Your Best </h2>
    </div>
+    <!-- 
+   <div class="hide">
+    <button @click='getData({ignoreCache: true})'>Click Me Before You Start Typing</button>
+    
+     
+      <p v-if="isLoading">Loading...</p>
+      
+
+      <p v-else>VisitorId: {{ data?.visitorId }}</p>
+      <p v-if="error">{{ error.message }}</p>
+      <pre v-if="data">{{ data }}</pre>
+   
+    
+  </div> -->
+
    <div class="timerShown">
       Time Left {{ time }}'s
    </div>
@@ -29,23 +44,14 @@
       <textarea v-model="typingUser" class="typingUser" placeholder="" rows="10" ></textarea>
 </div> 
 
-<!--Have a label under the main text box to provide the text -->
-    <!--- In the Placeholder you have have the input of the quote 
-     
-    You Dont need this, but we will need to have 
-    at least a one word to be registered in the
-    web domain
-    
-    <div class="backGround"> 
-      {{ background }}
-   </div>
-    --->
      <v-btn @click="leader" class="LeaderBoard"> LeaderBoard </v-btn>
      <v-btn @click="logout" class="logoutButton"> logout </v-btn>
 </div>
 </template>
 
 <script>
+import { useTransitionState } from 'vue';
+import { fpjsPlugin } from '@fingerprintjs/fingerprintjs-pro-vue-v3'
 import axios from 'axios'
 export default {
    data(){
@@ -61,6 +67,8 @@ export default {
       ended: false,
 
       colorLetter: [],
+
+      stateOfButton: false,
       authMessage: ''
       }
    },
@@ -72,10 +80,10 @@ export default {
          this.CheckingTyping(NValue);
 
          this.WordsPerMinuteCalculation(NValue);
+
+         this.timerFromText(NValue);
       },
-        
       },
-   
    async mounted(){
       try{
          const token = localStorage.getItem('token')
@@ -137,7 +145,7 @@ export default {
             for(let i = 0; i<NValue.length; i++) {
               const Correct = this.background[i]; 
               const Typed = NValue[i];
-                     
+             
               let status;
             
                if(Typed != Correct){
@@ -175,6 +183,18 @@ export default {
          //console.log("I work after")
       },
 
+      checkAntiCheat(){
+         //if add the anti cheat thing here or in the backend to automatically run when the user
+         // goes on this website 
+      },
+
+      timerFromText(){
+         if(this.timeElapsed == 60){
+            alert("You are cannot type in here any more")
+         }
+
+      }
+
 
    
       }
@@ -182,6 +202,26 @@ export default {
 
 
    </script>
+
+
+
+<style>
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+html, body {
+   margin: 0;
+   padding: 0;
+   height: 100%;
+   width: 100%;
+}
+</style>
+
+
+
 
 <style scoped>
 /*
@@ -287,7 +327,7 @@ export default {
 } 
 
 .backgroundColor{
-   min-height: 97vh;
+   min-height: 100vh;
    background-color: #000000;
    background-size: auto;
    background-position: center;

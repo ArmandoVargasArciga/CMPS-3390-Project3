@@ -12,6 +12,8 @@ console.log('print here')
 
 
 <template>
+
+<!--
     <div class="hide">
     <button @click='getData({ignoreCache: true})'>Get visitor data</button>
     <div class="hideData">
@@ -23,7 +25,7 @@ console.log('print here')
     </div>
   </div>
 
-  <!--<HomePage />--->
+  <HomePage />--->
 
       
         <RouterView />
