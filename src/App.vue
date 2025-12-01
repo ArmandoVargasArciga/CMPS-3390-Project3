@@ -42,7 +42,7 @@ watch(
         
 </template>
 
-<style scoped>
+<style>
 
 .hideData{
   color: black;
