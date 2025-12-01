@@ -20,31 +20,7 @@
 </template>
 
 <script>
-//import mainImage from '@/src/images/content.png'
-import { ref } from 'vue';
 
-export default {
-   data(){
-      return {
-      email: '',
-      name: '',
-      }
-   },
-   methods: {
-      login(){
-         console.log("I work button")
-         this.$router.push('/login')
-      },
-      SignUp(){
-         console.log("I also work button")
-         this.$router.push('/signUp')
-      },
-      nextPage(){
-         this.$router.push('/print')
-      }
-   }
-}
-<script>
 //import mainImage from '@/src/images/content.png'
 import { ref } from 'vue';
 
