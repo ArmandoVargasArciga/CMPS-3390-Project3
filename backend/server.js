@@ -24,6 +24,21 @@ const UserSchema = new mongoose.Schema({ firstName: String,
                                          password: String });
 const User = mongoose.model('Users', UserSchema);
 
+function auth(req, res, next){
+  const header = req.headers['authorization'];
+  const token = header && header.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'You need to log in!'});
+  jwt.verify(token, 'secretKey', (err, decoded) => {
+    if (err) return res.status(403).json({error: 'Invalid token'});
+    req.user = decoded;
+    next();
+  })
+}
+
+app.get('/print', auth, (req, res) => {
+  res.json({message: 'Welcome ' + req.user.firstName})
+})
+
 app.get('/User', async (req, res) => {
   const Users = await User.find();
   res.json(Users);
@@ -58,7 +73,7 @@ app.post('/login', async (req, res) => {
   const passwordMatch = await bcrypt.compare(password, user.password)
   if(!passwordMatch) return res.status(401).json({error: "Incorrect Password"})
 
-  const token = jwt.sign({id: user._id}, 'secretKey', {expiresIn: '1h'})
+  const token = jwt.sign({id: user._id, firstName: user.firstName}, 'secretKey', {expiresIn: '1h'})
   res.json({token})
 })
 
