@@ -41,11 +41,9 @@
 
 
   <!--API pull into the label or placeholder mabey-->
-      <textarea v-model="typingUser" class="typingUser" placeholder="" rows="10" ></textarea>
+      <textarea v-model="typingUser" class="typingUser" placeholder="" rows="10" :disabled="time === 0" ></textarea>
 </div> 
 
-<<<<<<< HEAD
-=======
 <!--Have a label under the main text box to provide the text -->
     <!-- In the Placeholder you have have the input of the quote 
      
@@ -57,7 +55,6 @@
       {{ background }}
    </div>
     -->
->>>>>>> cab4d3764edaed90c4eb1066c1e596e93a7107e5
      <v-btn @click="leader" class="LeaderBoard"> LeaderBoard </v-btn>
 </div>
 </template>
@@ -106,7 +103,7 @@ export default {
 
          this.WordsPerMinuteCalculation(NValue);
 
-         this.timerFromText(NValue);
+         //this.timerFromText(NValue);
       },
         
    },
@@ -186,19 +183,18 @@ export default {
          //incorrect and correct by character. 
 
       CurrentWordsPerMeat(){
-         if (this.timeElapsed/0==NaN || this.timeElapsed/0==Infinity){
+         if (this.timeElapsed/0===NaN || this.timeElapsed/0===Infinity){
             this.timeElapsed = 0;
          } else {
-            this.timeElapsed = 30 - time--;
+            this.timeElapsed++;
          }
       },      
 
       leader(){
-         //console.log("I work before")
          this.$router.push('/leader')
-         //console.log("I work after")
       },
-//this should send wmp to backend and to judge if cheat or not
+
+      //this should send wmp to backend and to judge if cheat or not
       async sendResultToServer() {
          try {
             await axios.post('http://localhost:3000/typing-result', {
@@ -212,22 +208,21 @@ export default {
          }
       },
 
-      checkAntiCheat(){
-         //if add the anti cheat thing here or in the backend to automatically run when the user
-         // goes on this website 
+      timerFromText(){
+         if(this.time === 0){
+            alert("You are cannot type in here any more")
+            //const typedText = Typed
+         }
       },
 
-      timerFromText(){
-         if(this.timeElapsed == 60){
-            alert("You are cannot type in here any more")
-            const typedText = Typed
-         }
+      musicTempo(){
 
       }
 
-
+   },
+      
 }
-}// end of export default
+// end of export default
 </script>
 
 
