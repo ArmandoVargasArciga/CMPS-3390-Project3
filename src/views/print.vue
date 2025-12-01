@@ -52,6 +52,11 @@
 <script>
 import { useTransitionState } from 'vue';
 import { fpjsPlugin } from '@fingerprintjs/fingerprintjs-pro-vue-v3'
+//import slowS from '@/music'//const { initialize, switchMusic, stopAll } = backGround();
+
+
+import { initialize, switchMusic, stopAll  } from '@/controllers/backgroundMusic'
+
 import axios from 'axios'
 export default {
    data(){
@@ -111,7 +116,15 @@ export default {
             console.log("Error Something is wrong", error);
       }
    },
-   
+      enableMusic() {
+        initialize()
+        switchMusic(this.wordCounter)
+         },
+
+         stopMusic(){
+         stopAll()
+      },
+
    BeginTimer(){
       if (this.timer) return;
 
@@ -135,6 +148,8 @@ export default {
         //this.wordCounter = words.length;
 
          this.wordCounter = Math.round((words.length / this.timeElapsed) * 60); // actual accurate Current WPM
+             switchMusic(this.wordCounter)
+  
          //Math.round(this.workCounter);   
       }, 
 
@@ -191,7 +206,6 @@ export default {
          if(this.timeElapsed == 60){
             alert("You are cannot type in here any more")
          }
-
       }
 
 
