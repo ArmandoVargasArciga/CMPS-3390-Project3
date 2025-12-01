@@ -1,0 +1,153 @@
+/*
+.container {
+   position: relative;
+   width: 80%;
+   margin: 15% auto;
+}
+*/
+
+   .backGround {
+      pointer-events: none;
+      white-space: pre-wrap;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: grey;
+      padding: 10px;
+      font-size: 20px;
+      font-family: Verdana;
+      text-align: start;
+   }
+
+.typingUser {
+  position: relative;
+  background: transparent;
+  width: 100%;
+  min-height: 120px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 2px solid bisque;
+  padding: 8px;
+  resize: none;
+  color: transparent;
+  outline: none;
+  font-family: Verdana;
+  caret-color: rgb(15, 104, 131);
+}
+
+.topContainer{
+   text-align: center;
+   font-family: cursive;
+   font-size: x-large;
+   color: bisque;
+
+}
+
+.container{
+   position: relative;
+   width: 80%;
+   height: 150%;
+   margin: 20px auto;
+   font-family: Verdana;
+   text-align: start;
+   pointer-events: auto;
+}
+
+   .timerShown{
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      font-size: 88px;
+      font-weight: bold;
+      color: bisque;
+      font-family: cursive;
+   }
+
+.WordsPERMiniute{
+   display: flex;
+   justify-content: center;
+   font-family: cursive;
+   color: bisque;
+}
+
+.correctOrIncorrect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  white-space: pre-wrap;
+  font-size: 20px;
+  font-family: Verdana;
+  padding: 10px;
+}
+
+.incorrect{
+   color: red;
+   font-family: Verdana;
+   font-size: 20px;   
+}
+
+.textLeftOver{
+   color: grey;
+}
+
+.correct {
+   color: beige;
+} 
+
+.backgroundColor{
+   min-height: 97vh;
+   background-color: #000000;
+   background-size: auto;
+   background-position: center;
+   height: fit-content;
+   background-repeat: no-repeat ;
+}
+
+.LeaderBoard{
+   display: flex;
+   justify-content: center;
+   background-color: rgb(143, 138, 138);
+   color: black;
+   font-weight: bold;
+   padding: 10px 24px;
+   border-radius: 12px;
+   margin: auto;
+   width: 35%;
+   
+}
+
+/*
+add 
+
+.formatWordCounter{
+   font-size: 88px;
+   font-weight: bold;
+   color: bisque;
+   font-family: cursive;
+}
+
+
+   .MainTextArea {
+   width: 80%;
+   min-height: 120px;
+   margin: 0 auto;
+   display: block;
+   font-size: 16px;
+   border-radius: 10px;
+   border: 2px solid black;
+   padding: 10px;
+   resize: none;
+   outline: none;
+   background: white;
+   }
+   TEMP: overlay-buster 
+   .debug-top {
+   position: fixed !important;
+   top: 100px; left: 50%; transform: translateX(-50%);
+   width: 80%;
+   z-index: 999999 !important;
+   pointer-events: auto !important;
+   background: #fff;
+   }
+   */
