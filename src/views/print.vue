@@ -71,311 +71,116 @@
 </template>
 
 <script>
-import axios from 'axios'                             
+import '../styles/printvue.css'
 import { useFingerprintStore } from '../stores/fingerprint'
+import {
+  fetchBackgroundText,
+  calculateWPM,
+  buildColorLetter,
+  postTypingResult,
+} from '../controllers/typingController'
 
 export default {
-   data(){
-      return {
+  data() {
+    return {
       typingUser: '',
       background: '',
 
-      time: 60,   // will be used for time
+      time: 60, // will be used for time
       timer: null,
       timeElapsed: 0,
-      
+
       wordCounter: 0,
       ended: false,
 
       colorLetter: [],
+    }
+  },
+
+  computed: {
+    fpStore() {
+      return useFingerprintStore()
+    },
+    visitorId() {
+      return this.fpStore.visitorId
+    },
+    requestId() {
+      return this.fpStore.requestId
+    },
+  },
+
+  watch: {
+    typingUser(NValue) {
+      if (NValue.length != 0) {
+        this.BeginTimer()
       }
-   },
+      this.CheckingTyping(NValue)
+      this.WordsPerMinuteCalculation()
+    },
+  },
 
-   computed: {
-      fpStore() {
-         return useFingerprintStore()
-      },
-      visitorId() {
-         return this.fpStore.visitorId
-      },
-      requestId() {
-         return this.fpStore.requestId
-      },
-   },
+  async mounted() {
+    await this.loadtext()
+  },
 
-   watch: {
-      typingUser(NValue){
-         if(NValue.length != 0){
-            this.BeginTimer();
-         };
-         this.CheckingTyping(NValue);
+  methods: {
+    async loadtext() {
+      try {
+        const currentText = await fetchBackgroundText()
+        this.background = currentText
+      } catch (error) {
+        console.log('Error Something is wrong', error)
+      }
+    },
 
-         this.WordsPerMinuteCalculation(NValue);
-      },
-        
-   },
-   
-   async mounted(){
-      await this.loadtext();
-   },
+    BeginTimer() {
+      if (this.timer) return
 
-   methods: {
+      this.timer = setInterval(() => {
+        if (this.time > 0) {
+          this.time--
+          this.timeElapsed++
+        } else {
+          clearInterval(this.timer)
+          this.ended = true
+          this.WordsPerMinuteCalculation()
+          this.sendResultToServer() //this sends the score to fingerprint
+        }
+      }, 1000)
+    },
 
-      async loadtext() {
-         try {
-            const responce = await fetch("https://baconipsum.com/api/?type=all-meat&paras=2&format=text")
-            const currentText = await responce.text();
-            this.background = currentText;
-         } catch (error){
-            console.log("Error Something is wrong", error);
-         }
-      },
-   
-      BeginTimer(){
-         if (this.timer) return;
+    WordsPerMinuteCalculation() {
+      this.wordCounter = calculateWPM(this.typingUser, this.timeElapsed)
+    },
 
-         this.timer = setInterval(() => {
-           if (this.time > 0) {
-              this.time--;
-              this.timeElapsed++;
-           } else {
-              clearInterval(this.timer);
-              this.ended = true
-              this.WordsPerMinuteCalculation()
-              this.sendResultToServer()   // sends score to fingerprint
-           }
-         }, 1000);
-      },
+    CheckingTyping(NValue) {
+      this.colorLetter = buildColorLetter(NValue, this.background)
+    },
 
-      WordsPerMinuteCalculation(){
-         const words = this.typingUser.trim().split(/\s+/) //condensed to counting words by spaces
-           //this.wordCounter = words.length;
-         if (this.timeElapsed > 0) {
-            this.wordCounter = Math.round((words.length / this.timeElapsed) * 60); // actual accurate Current WPM
-            //Math.round(this.workCounter); 
-         } else {
-            this.wordCounter = 0
-         }  
-      }, 
+    CurrentWordsPerMeat() {
+      if (this.timeElapsed / 0 == NaN || this.timeElapsed / 0 == Infinity) {
+        this.timeElapsed = 0
+      } else {
+        this.timeElapsed = 30 - time--
+      }
+    },
 
-      CheckingTyping(NValue){
-         //make an array of colored letters that are false or true
-         this.colorLetter = [];
-         for(let i = 0; i<NValue.length; i++) {
-           const Correct = this.background[i]; 
-           const Typed = NValue[i];
-                      
-           let status;
-         
-            if(Typed != Correct){
-               status = "incorrect";
-            } else {
-               status = "correct"
-            }
-         
-            this.colorLetter.push({
-               char: Typed,
-               status: status
-            });
-         }
-         //starts from where the user left off
-         for(let i = NValue.length; i<this.background.length; i++){
-            this.colorLetter.push({
-               char: this.background[i],
-               status: "textLeftOver"
-            })
-         }
+    leader() {
+      this.$router.push('/leader')
+    },
 
-      }, // you need to see how to change the color of your words that are 
-         //incorrect and correct by character. 
-
-      CurrentWordsPerMeat(){
-         if (this.timeElapsed/0==NaN || this.timeElapsed/0==Infinity){
-            this.timeElapsed = 0;
-         } else {
-            this.timeElapsed = 30 - time--;
-         }
-      },      
-
-      leader(){
-         //console.log("I work before")
-         this.$router.push('/leader')
-         //console.log("I work after")
-      },
-//this should send wmp to backend and to judge if cheat or not
-      async sendResultToServer() {
-         try {
-            await axios.post('http://localhost:3000/typing-result', {
-               wpm: this.wordCounter,
-               visitorId: this.visitorId,
-               requestId: this.requestId,
-            })
-            console.log('Result sent to server')
-         } catch (e) {
-            console.error('Failed to send result:', e)
-         }
-      },
-
-   }
-
-}; // end of export default
+    async sendResultToServer() {
+      try {
+        await postTypingResult({
+          wpm: this.wordCounter,
+          visitorId: this.visitorId,
+          requestId: this.requestId,
+        })
+        console.log('Result sent to server')
+      } catch (e) {
+        console.error('Failed to send result:', e)
+      }
+    },
+  },
+}
 </script>
-
-
-<style scoped>
-/*
-.container {
-   position: relative;
-   width: 80%;
-   margin: 15% auto;
-}
-*/
-
-   .backGround {
-      pointer-events: none;
-      white-space: pre-wrap;
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: grey;
-      padding: 10px;
-      font-size: 20px;
-      font-family: Verdana;
-      text-align: start;
-   }
-
-.typingUser {
-  position: relative;
-  background: transparent;
-  width: 100%;
-  min-height: 120px;
-  font-size: 20px;
-  border-radius: 10px;
-  border: 2px solid bisque;
-  padding: 8px;
-  resize: none;
-  color: transparent;
-  outline: none;
-  font-family: Verdana;
-  caret-color: rgb(15, 104, 131);
-}
-
-.topContainer{
-   text-align: center;
-   font-family: cursive;
-   font-size: x-large;
-   color: bisque;
-
-}
-
-.container{
-   position: relative;
-   width: 80%;
-   height: 150%;
-   margin: 20px auto;
-   font-family: Verdana;
-   text-align: start;
-   pointer-events: auto;
-}
-
-   .timerShown{
-      display: flex;
-      justify-content: center;
-      text-align: center;
-      font-size: 88px;
-      font-weight: bold;
-      color: bisque;
-      font-family: cursive;
-   }
-
-.WordsPERMiniute{
-   display: flex;
-   justify-content: center;
-   font-family: cursive;
-   color: bisque;
-}
-
-.correctOrIncorrect {
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  white-space: pre-wrap;
-  font-size: 20px;
-  font-family: Verdana;
-  padding: 10px;
-}
-
-.incorrect{
-   color: red;
-   font-family: Verdana;
-   font-size: 20px;   
-}
-
-.textLeftOver{
-   color: grey;
-}
-
-.correct {
-   color: beige;
-} 
-
-.backgroundColor{
-   min-height: 97vh;
-   background-color: #000000;
-   background-size: auto;
-   background-position: center;
-   height: fit-content;
-   background-repeat: no-repeat ;
-}
-
-.LeaderBoard{
-   display: flex;
-   justify-content: center;
-   background-color: rgb(143, 138, 138);
-   color: black;
-   font-weight: bold;
-   padding: 10px 24px;
-   border-radius: 12px;
-   margin: auto;
-   width: 35%;
-   
-}
-
-/*
-add 
-
-.formatWordCounter{
-   font-size: 88px;
-   font-weight: bold;
-   color: bisque;
-   font-family: cursive;
-}
-
-
-   .MainTextArea {
-   width: 80%;
-   min-height: 120px;
-   margin: 0 auto;
-   display: block;
-   font-size: 16px;
-   border-radius: 10px;
-   border: 2px solid black;
-   padding: 10px;
-   resize: none;
-   outline: none;
-   background: white;
-   }
-   TEMP: overlay-buster 
-   .debug-top {
-   position: fixed !important;
-   top: 100px; left: 50%; transform: translateX(-50%);
-   width: 80%;
-   z-index: 999999 !important;
-   pointer-events: auto !important;
-   background: #fff;
-   }
-   */
-
-      
-   </style>
