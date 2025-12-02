@@ -7,7 +7,22 @@ const email = ref('');
 const password = ref('');
 const router = useRouter();
 
+const validateForm = () => {
+    if(!/\S+@\S+\.\S+/.test(email.value)){
+        alert("Invalid email")
+        return false
+    }
+    if(password.value.length < 8){
+        alert("Invalid password")
+        return false
+    }
+    return true
+}
+
 const logIn = async() => {
+    if(!validateForm()){
+        return;
+    }
     try{
         const res = await axios.post("http://localhost:3000/login", {
             email: email.value,
