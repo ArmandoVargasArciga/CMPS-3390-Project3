@@ -29,6 +29,7 @@
          </div>
    </div>
 <div class="container"> 
+   <div class="scroll">         
    <div class="correctOrIncorrect">
       <span 
          v-for="(item, i) in colorLetter"
@@ -38,13 +39,13 @@
       {{ item.char }}
       </span>
    </div>
-
-
   <!--API pull into the label or placeholder mabey-->
       <textarea v-model="typingUser" class="typingUser" placeholder="" rows="10" ></textarea>
-</div> 
+   </div> 
+</div>
 
      <v-btn @click="leader" class="LeaderBoard"> LeaderBoard </v-btn>
+     <br> <br>
      <v-btn @click="logout" class="logoutButton"> logout </v-btn>
 </div>
 </template>
@@ -57,7 +58,7 @@ import { fpjsPlugin } from '@fingerprintjs/fingerprintjs-pro-vue-v3'
 import { musicManager } from '@/controllers/backgroundMusic'
 
 //import { initialize, switchMusic, stopAll  } from '@/controllers/backgroundMusic'
-
+import '@/styles/printvue.css'
 import axios from 'axios'
 export default {
    data(){
@@ -267,7 +268,7 @@ html, body {
    width: 80%;
    margin: 15% auto;
 }
-*/
+ 
 
 .backGround {
    pointer-events: none;
@@ -292,15 +293,18 @@ html, body {
   background: transparent;
   width: 100%;
   min-height: 120px;
+  max-height: 200px;
   font-size: 20px;
   border-radius: 10px;
-  border: 2px solid bisque;
+  border: none;
   padding: 8px;
   resize: none;
   color: transparent;
   outline: none;
   font-family: Verdana;
   caret-color: rgb(15, 104, 131);
+  overflow: visible;
+  box-sizing: border-box;
 }
 
 .topContainer{
@@ -379,11 +383,31 @@ html, body {
    color: black;
    font-weight: bold;
    padding: 10px 24px;
-   border-radius: 12px;
+   border-radius: 50px;
    margin: auto;
    width: 35%;
    
 }
 
+.logoutButton{
+   display: flex;
+   justify-content: center;
+   background-color: rgb(143, 138, 138);
+   color: black;
+   font-weight: bold;
+   padding: 10px 24px;
+   border-radius: 50px;
+   margin: auto;
+   width: 35%;
+}
 
+   .scroll{
+      position: relative;
+      width: 100%;
+      height: 250px;
+      overflow-y: auto;
+      border: 2px solid bisque;
+      border-radius: 10px;
+   }
+      */
    </style>

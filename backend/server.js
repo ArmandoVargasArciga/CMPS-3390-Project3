@@ -125,10 +125,12 @@ app.post('/fp-event', async (req, res) => {
   }
 })
 
-const PORT = 3000
-app.listen(PORT, () => {
-  console.log(`Backend listening on port ${PORT}`)
-})
+
+
+//const PORT = 3000
+//app.listen(PORT, () => {
+//  console.log(`Backend listening on port ${PORT}`)
+//})*/
 
 //able to read the scores with this
 app.get('/scores', async (req, res) => {
@@ -136,4 +138,27 @@ app.get('/scores', async (req, res) => {
   res.json(allscores);
 });
 
+const typingResults = []
+
+app.post('/typing-result', (req, res) =>{
+  const { wpm, visitorId, requestId } = req.body
+
+  if (!visitorId) {
+    return res.status(400).json({ error: 'visitorId is required' })
+}
+
+  console.log('Received typing result:', req.body)
+
+  typingResults.push({
+    wpm,
+    visitorId,
+    requestId,
+    timestamp: Date.now(),
+  })
+
+  return res.json({ success: true })
+})
+
 //everything between jason comments are what i added lets see how it goes
+
+

@@ -1,22 +1,19 @@
-/*
-.container {
-   position: relative;
-   width: 80%;
-   margin: 15% auto;
-}
-*/
-
-   .backGround {
-      pointer-events: none;
-      white-space: pre-wrap;
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: grey;
-      padding: 10px;
-      font-size: 20px;
-      font-family: Verdana;
-      text-align: start;
+.backGround {
+   pointer-events: none;
+   white-space: pre-wrap;
+   position: absolute;
+   top: 0;
+   left: 0;
+   color: grey;
+   padding: 10px;
+   font-size: 20px;
+   border-radius: 10px;
+   border: 2px solid black;
+   padding: 8px;
+   resize: none;
+   color: black;
+   outline: none;
+   font-family: Verdana;
    }
 
 .typingUser {
@@ -24,15 +21,18 @@
   background: transparent;
   width: 100%;
   min-height: 120px;
+  max-height: 200px;
   font-size: 20px;
   border-radius: 10px;
-  border: 2px solid bisque;
+  border: none;
   padding: 8px;
   resize: none;
   color: transparent;
   outline: none;
   font-family: Verdana;
   caret-color: rgb(15, 104, 131);
+  overflow: visible;
+  box-sizing: border-box;
 }
 
 .topContainer{
@@ -96,7 +96,7 @@
 } 
 
 .backgroundColor{
-   min-height: 97vh;
+   min-height: 100vh;
    background-color: #000000;
    background-size: auto;
    background-position: center;
@@ -111,43 +111,29 @@
    color: black;
    font-weight: bold;
    padding: 10px 24px;
-   border-radius: 12px;
+   border-radius: 50px;
    margin: auto;
    width: 35%;
    
 }
 
-/*
-add 
-
-.formatWordCounter{
-   font-size: 88px;
+.logoutButton{
+   display: flex;
+   justify-content: center;
+   background-color: rgb(143, 138, 138);
+   color: black;
    font-weight: bold;
-   color: bisque;
-   font-family: cursive;
+   padding: 10px 24px;
+   border-radius: 50px;
+   margin: auto;
+   width: 35%;
 }
 
-
-   .MainTextArea {
-   width: 80%;
-   min-height: 120px;
-   margin: 0 auto;
-   display: block;
-   font-size: 16px;
-   border-radius: 10px;
-   border: 2px solid black;
-   padding: 10px;
-   resize: none;
-   outline: none;
-   background: white;
+   .scroll{
+      position: relative;
+      width: 100%;
+      height: 250px;
+      overflow-y: auto;
+      border: 2px solid bisque;
+      border-radius: 10px;
    }
-   TEMP: overlay-buster 
-   .debug-top {
-   position: fixed !important;
-   top: 100px; left: 50%; transform: translateX(-50%);
-   width: 80%;
-   z-index: 999999 !important;
-   pointer-events: auto !important;
-   background: #fff;
-   }
-   */
