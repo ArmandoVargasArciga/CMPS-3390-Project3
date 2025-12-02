@@ -39,8 +39,9 @@ const logIn = async() => {
 
 <template>
     <div class="container">
-        <h1>Log In!</h1>
+    
         <form @submit.prevent="logIn">
+            <h1>Log In!</h1>
             <label for="email">Email: </label>
             <input v-model="email"><br>
             <label for="password">Password: </label>
@@ -49,6 +50,11 @@ const logIn = async() => {
             <button type="submit">Log in!</button>
 
         </form>
+
+        <div class="button">
+            <p>Don't have an account?</p>
+            <v-btn @click="$router.push('/signUp')" class="SignUp"> Sign Up </v-btn>
+        </div>
     </div>
         
 </template>
