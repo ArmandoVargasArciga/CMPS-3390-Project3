@@ -22,7 +22,7 @@ const validateForm = () => {
         return false
     }
     if(password.value.length < 8){
-        alert("Invalid password")
+        alert("Invalid password, Your password must be at least 8 characters long")
         return false
     }
     return true

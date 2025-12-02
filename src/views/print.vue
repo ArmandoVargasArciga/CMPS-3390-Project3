@@ -2,7 +2,7 @@
 <!--<h1> Hello </h1> -->
 <div class="backgroundColor">
    <div class="topContainer">
-   <h2> Try Your Best </h2>
+   <h2> PorkType </h2>
    </div>
     
    <div class="buttonforMusic">
@@ -34,6 +34,7 @@
   <!--API pull into the label or placeholder mabey-->
       <textarea v-model="typingUser" class="typingUser" placeholder="" rows="10" ></textarea>
    </div> 
+
 </div>
 
      <v-btn @click="leader" class="LeaderBoard"> LeaderBoard </v-btn>
@@ -229,7 +230,7 @@ export default {
          }
       },
 
-      enavleMusic(){
+      enableMusic(){
          musicManager.slowMusic.play()
             .then(() => {
                musicManager.slowMusic.pause();

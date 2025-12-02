@@ -9,11 +9,12 @@
    font-size: 20px;
    border-radius: 10px;
    border: 2px solid black;
-   padding: 8px;
    resize: none;
    color: black;
    outline: none;
    font-family: Verdana;
+   line-height: 1.2;
+   box-sizing: border-box;
    }
 
 .typingUser {
@@ -25,7 +26,8 @@
   font-size: 20px;
   border-radius: 10px;
   border: none;
-  padding: 8px;
+  line-height: 1.2;
+  padding: 10px;
   resize: none;
   color: transparent;
   outline: none;
@@ -33,6 +35,7 @@
   caret-color: rgb(15, 104, 131);
   overflow: visible;
   box-sizing: border-box;
+  text-align: start;
 }
 
 .topContainer{
@@ -44,13 +47,15 @@
 }
 
 .container{
-   position: relative;
-   width: 80%;
-   height: 150%;
-   margin: 20px auto;
+   display: flex;
+   justify-content: center;
+   width: 100%;
+   padding: 0%;  
    font-family: Verdana;
    text-align: start;
    pointer-events: auto;
+   box-sizing: border-box;
+   margin-top: -08%;
 }
 
    .timerShown{
@@ -76,9 +81,11 @@
   left: 0;
   pointer-events: none;
   white-space: pre-wrap;
+  line-height: 1.2;
   font-size: 20px;
   font-family: Verdana;
   padding: 10px;
+  box-sizing: border-box;
 }
 
 .incorrect{
@@ -136,6 +143,7 @@
       overflow-y: auto;
       border: 2px solid bisque;
       border-radius: 10px;
+      padding: 10px;
    }
 
    .buttonforMusic{

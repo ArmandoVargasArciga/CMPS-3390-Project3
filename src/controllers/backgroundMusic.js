@@ -22,9 +22,9 @@ class MusicManager {
     this.mediumMusic.loop = true
     this.fastMusic.loop = true
 
-    this.slowMusic.volume = 0.5
-    this.mediumMusic.volume = 0.5
-    this.fastMusic.volume = 0.5
+    this.slowMusic.volume = 0.1
+    this.mediumMusic.volume = 0.1
+    this.fastMusic.volume = 0.1
   }
 
     //transitionMusic () {  }
@@ -33,27 +33,30 @@ class MusicManager {
     // Export a function to switch   based on WPM
     switchMusic (wpm) {
     let newMusic = null
+    let newSpeed = null
 
     if (wpm < 15) {
         newMusic = this.slowMusic
+        newSpeed = 'slow'
     } else if (wpm < 30) {
         newMusic = this.mediumMusic
+        newSpeed = 'medium' 
     } else {
         newMusic = this.fastMusic 
+        newSpeed = 'fast'
     }
 
     // If switching to different  
-     current = this.currenntMusic; 
-    if (newMusic !== current ) {
-        // Pause current  
-        if (current ) {
-            current.pause()
+     //current = this.currentMusic; 
+    if (newMusic !== this.currentMusic ) {
+       if (this.currentMusic ) {
+            this.currentMusic.pause()
         }
 
         // Play new  
         if (newMusic) {
             newMusic.play()
-            current = newMusic
+            this.currentMusic = newMusic
         }
     }
 }
@@ -63,7 +66,9 @@ stopAll () {
     if (this.slowMusic){ this.slowMusic.pause()}
     if (this.mediumMusic){ this.mediumMusic.pause()} 
     if (this.fastMusic){ this.fastMusic.pause()}
-    this.currentMusic = null
+    this.currentMusic = null;
+    this.isPlaying = false;
+    this.currentSpeed = null;
 }
 
 
