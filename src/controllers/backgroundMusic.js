@@ -43,6 +43,7 @@ class MusicManager {
     }
 
     // If switching to different  
+     current = this.currenntMusic; 
     if (newMusic !== current ) {
         // Pause current  
         if (current ) {
