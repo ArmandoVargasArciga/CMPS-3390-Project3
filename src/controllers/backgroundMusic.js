@@ -2,34 +2,44 @@ import slow from '@/music/slow.mp3'
 import medium from '@/music/mid.mp3'
 import fast from '@/music/FAST.mp3'
 
-let slowMusic = null
-let mediumMusic = null
-let fastMusic = null
-let currentMusic = null
 
-// Export a function to initialize audio
-export function initialize() {
-    slowMusic = new Audio(slowSong)
-    mediumMusic = new Audio(mediumSong)
-    fastMusic = new Audio(fastSong)
+class MusicManager {
+  constructor() {
+    this.slowMusic = null
+    this.mediumMusic = null
+    this.fastMusic = null
+    this.currentMusic = null
+    this.isPlaying = false
+    this.currentSpeed = null  // 'slow', 'medium', 'fast'
+  }
 
-    slowMusic.loop = true
-    mediumMusic.loop = true
-    fastMusic.loop = true
+  initialize() {
+    this.slowMusic = new Audio(slow)
+    this.mediumMusic = new Audio(medium)
+    this.fastMusic = new Audio(fast)
 
-    return { slow, medium, fast}
-}
+    this.slowMusic.loop = true
+    this.mediumMusic.loop = true
+    this.fastMusic.loop = true
 
-// Export a function to switch   based on WPM
-export function switchMusic (wpm) {
+    this.slowMusic.volume = 0.5
+    this.mediumMusic.volume = 0.5
+    this.fastMusic.volume = 0.5
+  }
+
+    //transitionMusic () {  }
+
+
+    // Export a function to switch   based on WPM
+    switchMusic (wpm) {
     let newMusic = null
 
     if (wpm < 40) {
-        newMusic = slow 
+        newMusic = this.slowMusic
     } else if (wpm < 70) {
-        newMusic = medium 
+        newMusic = this.mediumMusic
     } else {
-        newMusic = fast 
+        newMusic = this.fastMusic 
     }
 
     // If switching to different  
@@ -47,10 +57,30 @@ export function switchMusic (wpm) {
     }
 }
 
-// Export function to stop all  
-export function stopAll () {
-    if (slow) slow.pause()
-    if (medium) medium.pause()
-    if (fast) fast.pause()
-    current = null
+
+stopAll () {
+    if (this.slowMusic){ this.slowMusic.pause()}
+    if (this.mediumMusic){ this.mediumMusic.pause()} 
+    if (this.fastMusic){ this.fastMusic.pause()}
+    this.currentMusic = null
 }
+
+
+pause () {
+    if (this.currentMusic) {
+        this.currentMusic.pause()
+        this.isPlaying = false
+    }
+}
+
+resume () {
+    if (this.currentMusic && !this.isPlaying) {
+        this.currentMusic.play()
+        this.isPlaying = true
+    }
+}
+
+}
+
+export  const musicManager = new MusicManager()
+

@@ -2,7 +2,9 @@
 
 <div class="pageBackground">
     <div class = "container"> 
-         <v-btn @click="nextPage" color="white" class="buttonGoogle"> Sign in with Google </v-btn>
+        <!--
+      <v-btn @click="nextPage" color="white" class="buttonGoogle"> Sign in with Google </v-btn>
+        --> 
           
    </div> 
 

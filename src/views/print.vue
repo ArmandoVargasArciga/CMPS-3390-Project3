@@ -54,8 +54,9 @@ import { useTransitionState } from 'vue';
 import { fpjsPlugin } from '@fingerprintjs/fingerprintjs-pro-vue-v3'
 //import slowS from '@/music'//const { initialize, switchMusic, stopAll } = backGround();
 
+import { musicManager } from '@/controllers/backgroundMusic'
 
-import { initialize, switchMusic, stopAll  } from '@/controllers/backgroundMusic'
+//import { initialize, switchMusic, stopAll  } from '@/controllers/backgroundMusic'
 
 import axios from 'axios'
 export default {
@@ -77,31 +78,32 @@ export default {
       }
    },
    watch: {
-      typingUser(NValue){
-         if(NValue.length != 0){
-            this.BeginTimer();
-         };
-         this.CheckingTyping(NValue);
+         typingUser(NValue){
+            if(NValue.length != 0){
+               this.BeginTimer();
+            };
+            this.CheckingTyping(NValue);
 
-         this.WordsPerMinuteCalculation(NValue);
+            this.WordsPerMinuteCalculation(NValue);
 
-         this.timerFromText(NValue);
+            this.timerFromText(NValue);
+         },
       },
-      },
-   async mounted(){
-      try{
-         const token = localStorage.getItem('token')
-         console.log(token)
-         const res = await axios.get("http://localhost:3000/print", {
-            headers: {Authorization: 'Bearer ' + token}
-         })
-         this.authMessage = res.data.message
-      }catch(e){
-         this.authMessage = "Access denied"
-         this.$router.push('/login')
-      }
-      await this.loadtext();
-      initializeMusic();
+         async mounted(){
+            try{
+               const token = localStorage.getItem('token')
+               console.log(token)
+               const res = await axios.get("http://localhost:3000/print", {
+                  headers: {Authorization: 'Bearer ' + token}
+               })
+               this.authMessage = res.data.message
+            }catch(e){
+               this.authMessage = "Access denied"
+               this.$router.push('/login')
+            }
+            await this.loadtext();
+            musicManager.initialize(); //initailize music manager model 
+            //initializeMusic();
    },
       methods: {
       logout(){
@@ -117,7 +119,24 @@ export default {
             console.log("Error Something is wrong", error);
       }
    },
-      enableMusic() {
+      async sendResultToServer(){
+         try{
+            const token = localStorage.getItem('token')
+            console.log("Sending WPM to server:", this.wordCounter)
+            const res = await axios.post("http://localhost:3000/print", {
+               wpm: this.wordCounter
+            }, {
+               headers: {Authorization: 'Bearer ' + token}
+            })
+            console.log("Server response:", res.data)
+         } catch (error){
+            console.log("Error sending WPM to server:", error)
+         }
+      },
+
+
+   /*   
+   enableMusic() {
         initialize()
         switchMusic(this.wordCounter)
          },
@@ -125,6 +144,7 @@ export default {
          stopMusic(){
          stopAll()
       },
+*/
 
    BeginTimer(){
       if (this.timer) return;
@@ -133,10 +153,13 @@ export default {
         if (this.time > 0) {
          this.time--;
          this.timeElapsed++;
+         musicManager.switchMusic(this.wordCounter);
          } else {
             clearInterval(this.timer);
             this.WordsPerMinuteCalculation();
             this.ended = true;
+            musicManager.stopAll();
+            this.sendResultToServer();
          }
       }, 1000); //every thousand is the speed it decreases
              // You can have the speed at 2000 and it will 

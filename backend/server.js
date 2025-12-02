@@ -130,4 +130,10 @@ app.listen(PORT, () => {
   console.log(`Backend listening on port ${PORT}`)
 })
 
+//able to read the scores with this
+app.get('/scores', async (req, res) => {
+  const allscores = await scores.find().toArray();
+  res.json(allscores);
+});
+
 //everything between jason comments are what i added lets see how it goes
