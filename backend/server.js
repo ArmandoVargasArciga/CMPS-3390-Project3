@@ -79,7 +79,16 @@ app.post('/User',
 });
 
 // Login Page
-app.post('/login', async (req, res) => {
+app.post('/login',
+  [
+    body('email').trim().escape().notEmpty().withMessage('You need a email'),
+    body('password').trim().escape().notEmpty().withMessage('You need a password')
+  ],
+  async (req, res) => {
+  const errors = validationResult(req)
+  if(!errors.isEmpty()){
+    return res.status(400).json({errors: errors.array()})
+  }
   const {email, password} = req.body;
   const user = await User.findOne({email});
   if(!user) return res.status(401).json({error: "Incorrect Email"})
