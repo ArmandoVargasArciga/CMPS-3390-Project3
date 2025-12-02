@@ -91,13 +91,14 @@ html, body {
  }
 
 .login{
+   display: flex;
+   justify-content: center;
    background-color: black;
    color: white;
    font-weight: bold;
    font-size: x-large;
-   display: flex;
-   justify-content: center;
-   margin: auto;
+   margin-left: 67%;
+   margin-top: -6%;
    width: 15%;
    padding: 20px 24px;
    border-radius: 12px;
@@ -110,7 +111,8 @@ html, body {
    font-size: x-large;
    display: flex;
    justify-content: center;
-   margin: auto;
+   margin-left: 47%;
+   margin-top: -6.8%;
    width: 15%;
    padding: 20px 24px;
    border-radius: 12px;
