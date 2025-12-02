@@ -4,6 +4,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const axios = require('axios'); //Jason added this lets see if it breaks :)
+const { body, validationResult} = require('express-validator');
 
 const app = express();
 app.use(cors());
@@ -46,7 +47,19 @@ app.get('/User', async (req, res) => {
 });
 
 // Signup Page
-app.post('/User', async (req, res) => {
+app.post('/User', 
+  [
+    body('firstName').trim().escape().notEmpty().withMessage('You need a first name'),
+    body('lastName').trim().escape().notEmpty().withMessage('You need a last name'),
+    body('userName').trim().escape().notEmpty().withMessage('You need a username'),
+    body('email').trim().escape().notEmpty().withMessage('You need a email'),
+    body('password').trim().escape().notEmpty().withMessage('You need a password')
+  ],
+  async (req, res) => {
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+      return res.status(400).json({errors: errors.array()})
+    }
   try {
     const { firstName, lastName, userName, email, password} = req.body
     const hashPassword = await bcrypt.hash(password, 10)
