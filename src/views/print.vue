@@ -119,7 +119,7 @@ export default {
          try{
             const token = localStorage.getItem('token')
             console.log("Sending WPM to server:", this.wordCounter)
-            const res = await axios.post("http://localhost:3000/print", {
+            const res = await axios.post("http://localhost:3000/typing-result", {
                wpm: this.wordCounter
             }, {
                headers: {Authorization: 'Bearer ' + token}

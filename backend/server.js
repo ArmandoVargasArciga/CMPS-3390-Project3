@@ -159,6 +159,10 @@ app.post('/typing-result', (req, res) =>{
   return res.json({ success: true })
 })
 
+app.get('/typing-results', (req, res) => {
+  res.json(typingResults)
+}); 
+
 //everything between jason comments are what i added lets see how it goes
 
 
