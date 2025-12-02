@@ -137,3 +137,24 @@
       border: 2px solid bisque;
       border-radius: 10px;
    }
+
+   .buttonforMusic{
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+      text-align: center;
+   }
+
+   .startButton{
+      background-color: bisque;
+      color: black;
+      font-weight: bold;
+      padding: 15px 30px;
+      border-radius: 67px;
+      font-size: large;
+      cursor: pointer;
+   }
+
+   .startButton:hover{
+      background-color: rgb(255, 218, 185);
+   }

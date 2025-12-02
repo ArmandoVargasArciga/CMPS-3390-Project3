@@ -34,9 +34,9 @@ class MusicManager {
     switchMusic (wpm) {
     let newMusic = null
 
-    if (wpm < 40) {
+    if (wpm < 15) {
         newMusic = this.slowMusic
-    } else if (wpm < 70) {
+    } else if (wpm < 30) {
         newMusic = this.mediumMusic
     } else {
         newMusic = this.fastMusic 

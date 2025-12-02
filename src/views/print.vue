@@ -4,20 +4,12 @@
    <div class="topContainer">
    <h2> Try Your Best </h2>
    </div>
-    <!-- 
-   <div class="hide">
-    <button @click='getData({ignoreCache: true})'>Click Me Before You Start Typing</button>
     
-     
-      <p v-if="isLoading">Loading...</p>
-      
-
-      <p v-else>VisitorId: {{ data?.visitorId }}</p>
-      <p v-if="error">{{ error.message }}</p>
-      <pre v-if="data">{{ data }}</pre>
-   
-    
-  </div> -->
+   <div class="buttonforMusic">
+      <button @click="enableMusic" class="startButton"> Enable Music  
+       Click to enable music 
+       </button>
+   </div>
 
    <div class="timerShown">
       Time Left {{ time }}'s
@@ -235,12 +227,20 @@ export default {
          if(this.timeElapsed == 60){
             alert("You are cannot type in here any more")
          }
-      }
+      },
+
+      enavleMusic(){
+         musicManager.slowMusic.play()
+            .then(() => {
+               musicManager.slowMusic.pause();
+               console.log("Music started successfully");
+            })
 
 
    
-      }
-   };
+      },
+   }
+};
 
 
    </script>
