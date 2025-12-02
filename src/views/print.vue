@@ -103,7 +103,9 @@ export default {
                this.$router.push('/login')
             }
             await this.loadtext();
+            console.log("Background Music loaded before ");
             musicManager.initialize(); //initailize music manager model 
+            console.log("Background Music loaded after ");
             //initializeMusic();
    },
       methods: {
@@ -154,11 +156,13 @@ export default {
         if (this.time > 0) {
          this.time--;
          this.timeElapsed++;
+         console.log("Switching music for", this.wordCounter);
          musicManager.switchMusic(this.wordCounter);
          } else {
             clearInterval(this.timer);
             this.WordsPerMinuteCalculation();
             this.ended = true;
+            console.log("Music should stop about now!");   
             musicManager.stopAll();
             this.sendResultToServer();
          }
@@ -173,7 +177,7 @@ export default {
         //this.wordCounter = words.length;
 
          this.wordCounter = Math.round((words.length / this.timeElapsed) * 60); // actual accurate Current WPM
-             switchMusic(this.wordCounter)
+            // switchMusic(this.wordCounter)
   
          //Math.round(this.workCounter);   
       }, 

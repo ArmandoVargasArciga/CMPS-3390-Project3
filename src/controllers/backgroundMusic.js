@@ -82,5 +82,5 @@ resume () {
 
 }
 
-export  const musicManager = new MusicManager()
+export const musicManager = new MusicManager()
 
