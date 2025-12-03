@@ -1,7 +1,8 @@
 import slow from '@/music/slow.mp3'
-import medium from '@/music/mid.mp3'
-import fast from '@/music/FAST.mp3'
-
+//import medium from '@/music/mid.mp3'
+//import fast from '@/music/FAST.mp3'
+import medium from '@/music/medium2.mp3'
+import fast from '@/music/fast2.mp3'
 
 class MusicManager {
   constructor() {
