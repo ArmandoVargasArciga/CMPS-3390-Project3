@@ -4,22 +4,24 @@ body{
     padding: 0px;
 }
 .container{
-    padding: 140px;
-    text-align: center;
+    padding: 150px 20px;
+    text-align: center;;
 }
 
 form{
     background-color: #222222d7;
     border-radius: 6px;
-    box-shadow: 0px 1px 10px rgba(255, 228, 196, 0.856);
-    width: 45%;
-    height: 50%;
-    padding: 30px 40px;
+    box-shadow: 0px 1px 10px rgba(255, 228, 196, 0.856);;
+    width: 100%;
+    max-width: 500px;
+    min-width: 480px;
+    height: auto;
     margin: 0 auto;
+    padding: 30px 40px;
 }
 
-h1 {
-  margin-bottom: 20px;
+h2 {
+  margin-bottom: 0px;
 }
 
 label{
@@ -58,7 +60,11 @@ button:hover{
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
-    width: 100px;
-    padding: 10px;
+    width: 0px;
+    padding: 10px 32%;
     margin-top: 15px;
+}
+
+.SignUp:hover{
+    background: #d3b792;
 }
