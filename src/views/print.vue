@@ -4,13 +4,13 @@
    <div class="topContainer">
    <h2> PorkType </h2>
    </div>
-    
+ <!---   
    <div class="buttonforMusic">
       <button @click="enableMusic" class="startButton"> Enable Music  
        Click to enable music 
        </button>
    </div>
-
+--->
    <div class="timerShown">
       Time Left {{ time }}'s
    </div>
