@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
-//import '@/styles/signup.css';
+import '@/styles/signup.css';
 
 
 const firstName = ref('');
@@ -53,7 +53,8 @@ const signUp = async() => {
         
         <form @submit.prevent="signUp">
             
-            <h1>Sign Up!</h1>
+            <h2>Sign Up!</h2>
+            <br>
             <label for="firstName">First Name: </label>
             <input v-model="firstName"><br>
             <label for="lastName">Last Nmae: </label>
@@ -66,15 +67,17 @@ const signUp = async() => {
             <input v-model="password"><br>
 
             <button type="submit">Sign Up!</button>
+            <br> 
+            <br>
+            <h2>Don't have an account?</h2>
+            <br>
+            <v-btn @click="$router.push('/login')" class="SignUp"> Log In </v-btn>
          </form>
 
-         <div class="button">
-            <p>Don't have an account?</p>
-            <v-btn @click="$router.push('/login')" class="SignUp"> Log In </v-btn>
-        </div>
+        
     </div>
 </template>
-
+<!--
 <style scoped>
 body{
     margin: 0px;
@@ -134,4 +137,4 @@ button:hover{
     background: #d3b792;
 }
 
-</style>
+</style>*/-->
