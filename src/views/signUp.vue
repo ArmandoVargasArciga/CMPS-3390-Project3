@@ -57,7 +57,7 @@ const signUp = async() => {
             <br>
             <label for="firstName">First Name: </label>
             <input v-model="firstName"><br>
-            <label for="lastName">Last Nmae: </label>
+            <label for="lastName">Last Name: </label>
             <input v-model="lastName"><br>
             <label for="username">Username: </label>
             <input v-model="username"><br>

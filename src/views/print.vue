@@ -15,15 +15,15 @@
       Time Left {{ time }}'s
    </div>
    <div class="WordsPERMiniute">
-      <h1> Words Per Meat (WPM):  </h1> 
-         <div class="formatWordCounter">
-         <h1>  {{ wordCounter }} </h1>
-         </div>
-         <h1>  </h1> 
-         <h1> Accuracy %:   </h1>
+         <h1> Words Per Meat (WPM):  </h1> 
       <div class="formatWordCounter">
-         <h3>  {{ accuracy }}  </h3>
-         </div>
+         <h1>  {{ wordCounter }} </h1>
+      </div>
+         <h1 class="invisible"> --------- </h1> 
+         <h1> Accuracy:   </h1>
+      <div class="formatWordCounter">
+         <h1>  {{ accuracy }}% </h1>
+      </div>
    </div>
    <div class="accuracyWPM">
       
@@ -45,8 +45,9 @@
    </div> 
 
 </div>
-
+      <!-- 
      <v-btn @click="leader" class="LeaderBoard"> LeaderBoard </v-btn>
+     --->
      <br> <br>
      <v-btn @click="logout" class="logoutButton"> logout </v-btn>
 </div>
@@ -68,7 +69,7 @@ export default {
       typingUser: '',
       background: '',
 
-      time: 10,   // will be used for time
+      time: 15,   // will be used for time
       timer: null,
       timeElapsed: 0,
       
@@ -77,7 +78,10 @@ export default {
 
       colorLetter: [],
       stateOfButton: false,
-      authMessage: ''
+      authMessage: '',
+
+      accuracy: 0,
+      lastCall: [],
       }
    },
    watch: {
@@ -91,7 +95,7 @@ export default {
 
             this.timerFromText(NValue);
 
-            this.accuracyCalculation();
+            this.accuracyCalculation(NValue);
          },
       },
          async mounted(){
@@ -141,18 +145,6 @@ export default {
          }
       },
 
-
-   /*   
-   enableMusic() {
-        initialize()
-        switchMusic(this.wordCounter)
-         },
-
-         stopMusic(){
-         stopAll()
-      },
-*/
-
    BeginTimer(){
       if (this.timer) return;
 
@@ -170,6 +162,11 @@ export default {
             this.accuracyCalculation();
             musicManager.stopAll();
             this.sendResultToServer();
+            if(this.accuracy < 50){
+               alert("Your accuracy is below 50%, What did you do!");
+            } else {
+               alert("Time's up! Your WPM is " + this.wordCounter + " and your accuracy is " + this.accuracy + "%");
+         }
          }
       }, 1000); //every thousand is the speed it decreases
              // You can have the speed at 2000 and it will 
@@ -238,7 +235,7 @@ export default {
 
       timerFromText(){
          if(this.timeElapsed == 60){
-            alert("You are cannot type in here any more")
+            alert("You cannot type in here any more")
          }
       },
 
@@ -251,20 +248,28 @@ export default {
       },
 
       accuracyCalculation(){
-          lastCall = this.colorLetter;
+            let lastCall = this.colorLetter;
             let correctChars = 0;
+            let incorrectChars = 0;
             for (let i = 0; i < lastCall.length; i++) {
+               // Add this in your loop or after
+               console.log("Correct:", correctChars, "Incorrect:", incorrectChars);
                if (lastCall[i].status === "correct") {
                   correctChars++;
+               } else if (lastCall[i].status === "incorrect") {
+                  incorrectChars++;
                }
             }
-            let accuracy = (correctChars / lastCall.length) * 100;
+            let accuracy = (correctChars / (correctChars + incorrectChars)) * 100;
+            this.accuracy = accuracy.toFixed(2);
             console.log("Accuracy: " + accuracy.toFixed(2) + "%");
-            if (accuracy <= 50 ) {
-               alert.apply("Your accuracy is below 50%, What did you do!");
-            } else {
-               this.accuracy = accuracy.toFixed(2);
-            }
+            //if (accuracy <= 50 ) {
+            //   alert("Your accuracy is below 50%, What did you do!");
+            //   console.log("Your accuracy is below 50%, What did you do!");
+            //} else {
+            //   this.accuracy = accuracy.toFixed(2);
+            //   console.log("Your accuracy is good!");
+            //}
             
       },
    }
