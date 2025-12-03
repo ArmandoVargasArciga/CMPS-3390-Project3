@@ -48,13 +48,14 @@ const logIn = async() => {
             <input v-model="password"><br>
 
             <button type="submit">Log in!</button>
-
+            <br> 
+            <br>    
+            <h2>Don't have an account?</h2>
+                <br> 
+                <v-btn @click="$router.push('/signUp')" class="SignUp"> Sign Up </v-btn>
         </form>
 
-        <div class="button">
-            <p>Don't have an account?</p>
-            <v-btn @click="$router.push('/signUp')" class="SignUp"> Sign Up </v-btn>
-        </div>
+        
     </div>
         
 </template>

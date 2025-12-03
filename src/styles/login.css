@@ -53,8 +53,13 @@ button:hover {
 }
 
 .signup {
-    margin-top: 15px;
-    color: bisque;
+    background: bisque;
+    color: black;
+    border-radius: 4px;
     cursor: pointer;
+    font-weight: bold;
+    width: 100px;
+    padding: 10px;
+    margin-top: 15px;er;
     
 }
