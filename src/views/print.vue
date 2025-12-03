@@ -19,14 +19,15 @@
          <div class="formatWordCounter">
          <h1>  {{ wordCounter }} </h1>
          </div>
+         <h1>  </h1> 
+         <h1> Accuracy %:   </h1>
+      <div class="formatWordCounter">
+         <h3>  {{ accuracy }}  </h3>
+         </div>
    </div>
    <div class="accuracyWPM">
-      <!--
-      <h1> Accuracy  </h1>
-      <div class="formatWordCounter">
-         <h1>  {{ wordCounter }} </h1>
-         </div>
-      -->
+      
+   
    </div>
 <div class="container"> 
    <div class="scroll">         
@@ -67,7 +68,7 @@ export default {
       typingUser: '',
       background: '',
 
-      time: 60,   // will be used for time
+      time: 10,   // will be used for time
       timer: null,
       timeElapsed: 0,
       
@@ -89,6 +90,8 @@ export default {
             this.WordsPerMinuteCalculation(NValue);
 
             this.timerFromText(NValue);
+
+            this.accuracyCalculation();
          },
       },
          async mounted(){
@@ -163,7 +166,8 @@ export default {
             clearInterval(this.timer);
             this.WordsPerMinuteCalculation();
             this.ended = true;
-            console.log("Music should stop about now!");   
+            console.log("Music should stop about now!");
+            this.accuracyCalculation();
             musicManager.stopAll();
             this.sendResultToServer();
          }
@@ -243,10 +247,25 @@ export default {
             .then(() => {
                musicManager.slowMusic.pause();
                console.log("Music started successfully");
-            })
+            })   
+      },
 
-
-   
+      accuracyCalculation(){
+          lastCall = this.colorLetter;
+            let correctChars = 0;
+            for (let i = 0; i < lastCall.length; i++) {
+               if (lastCall[i].status === "correct") {
+                  correctChars++;
+               }
+            }
+            let accuracy = (correctChars / lastCall.length) * 100;
+            console.log("Accuracy: " + accuracy.toFixed(2) + "%");
+            if (accuracy <= 50 ) {
+               alert.apply("Your accuracy is below 50%, What did you do!");
+            } else {
+               this.accuracy = accuracy.toFixed(2);
+            }
+            
       },
    }
 };

@@ -16,18 +16,18 @@ class MusicManager {
   initialize() {
     this.slowMusic = new Audio(slow)
     this.mediumMusic = new Audio(medium)
-    this.fastMusic = new Audio(fast)
+    this.fastMusic = new Audio(fast) //loading everything into memory
 
     this.slowMusic.loop = true
-    this.mediumMusic.loop = true
+    this.mediumMusic.loop = true // infirnite loop otherwise stops after one play
     this.fastMusic.loop = true
 
     this.slowMusic.volume = 0.1
-    this.mediumMusic.volume = 0.1
+    this.mediumMusic.volume = 0.1 // volume level 0.0 to 1.0 
     this.fastMusic.volume = 0.1
   }
 
-    //transitionMusic () {  }
+    
 
 
     // Export a function to switch   based on WPM
@@ -71,6 +71,14 @@ stopAll () {
     this.currentSpeed = null;
 }
 
+transitionMusic () {
+    if (this.currentMusic != this.newMusic) {
+        this.newMusic = 
+        this.currentMusic
+        this.currentMusic.currentTime 
+        this.currentMusic.play()
+    }
+  }
 
 pause () {
     if (this.currentMusic) {

@@ -167,3 +167,13 @@
    .startButton:hover{
       background-color: rgb(255, 218, 185);
    }
+
+
+   .accuracyWPM{
+      display: grid;
+      justify-content: center;
+      font-family: cursive;
+      margin-top: -5%;
+      margin-bottom: 2%;
+      text-align: center;
+   }
