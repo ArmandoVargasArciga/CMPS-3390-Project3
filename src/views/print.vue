@@ -69,7 +69,7 @@ export default {
       typingUser: '',
       background: '',
 
-      time: 15,   // will be used for time
+      time: 60,   // will be used for time
       timer: null,
       timeElapsed: 0,
       
