@@ -18,7 +18,7 @@
    }
 
 .typingUser {
-  position: relative;
+  position: absolute;
   background: transparent;
   width: 100%;
   min-height: 120px;
@@ -36,6 +36,7 @@
   overflow: visible;
   box-sizing: border-box;
   text-align: start;
+  margin: 0;
 }
 
 .topContainer{
@@ -51,6 +52,7 @@
    justify-content: center;
    width: 100%;
    padding: 0%;  
+   max-height: 370px;
    font-family: Verdana;
    text-align: start;
    pointer-events: auto;

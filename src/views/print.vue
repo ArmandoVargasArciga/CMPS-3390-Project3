@@ -176,12 +176,7 @@ export default {
 
    WordsPerMinuteCalculation(){
       const words = this.typingUser.trim().split(/\s+/) //condensed to counting words by spaces
-        //this.wordCounter = words.length;
-
-         this.wordCounter = Math.round((words.length / this.timeElapsed) * 60); // actual accurate Current WPM
-            // switchMusic(this.wordCounter)
-  
-         //Math.round(this.workCounter);   
+      this.wordCounter = Math.round((words.length / this.timeElapsed) * 60); // actual accurate Current WPM 
       }, 
 
    CheckingTyping(NValue){
@@ -223,60 +218,42 @@ export default {
    },      
 
    leader(){
-         //console.log("I work before")
          this.$router.push('/leader')
-         //console.log("I work after")
       },
 
-      checkAntiCheat(){
-         //if add the anti cheat thing here or in the backend to automatically run when the user
-         // goes on this website 
-      },
-
-      timerFromText(){
-         if(this.timeElapsed == 60){
-            alert("You cannot type in here any more")
-         }
-      },
-
-      enableMusic(){
-         musicManager.slowMusic.play()
-            .then(() => {
-               musicManager.slowMusic.pause();
-               console.log("Music started successfully");
-            })   
-      },
-
-      accuracyCalculation(){
-            let lastCall = this.colorLetter;
-            let correctChars = 0;
-            let incorrectChars = 0;
-            for (let i = 0; i < lastCall.length; i++) {
-               // Add this in your loop or after
-               console.log("Correct:", correctChars, "Incorrect:", incorrectChars);
-               if (lastCall[i].status === "correct") {
-                  correctChars++;
-               } else if (lastCall[i].status === "incorrect") {
-                  incorrectChars++;
-               }
+   timerFromText(){
+      if(this.timeElapsed == 60){
+         alert("You cannot type in here any more")
+      }
+   },
+   enableMusic(){
+      musicManager.slowMusic.play()
+         .then(() => {
+            musicManager.slowMusic.pause();
+            console.log("Music started successfully");
+         })   
+   },
+   accuracyCalculation(){
+         let lastCall = this.colorLetter;
+         let correctChars = 0;
+         let incorrectChars = 0;
+         for (let i = 0; i < lastCall.length; i++) {
+            // Add this in your loop or after
+            console.log("Correct:", correctChars, "Incorrect:", incorrectChars);
+            if (lastCall[i].status === "correct") {
+               correctChars++;
+            } else if (lastCall[i].status === "incorrect") {
+               incorrectChars++;
             }
-            let accuracy = (correctChars / (correctChars + incorrectChars)) * 100;
-            this.accuracy = accuracy.toFixed(2);
-            console.log("Accuracy: " + accuracy.toFixed(2) + "%");
-            //if (accuracy <= 50 ) {
-            //   alert("Your accuracy is below 50%, What did you do!");
-            //   console.log("Your accuracy is below 50%, What did you do!");
-            //} else {
-            //   this.accuracy = accuracy.toFixed(2);
-            //   console.log("Your accuracy is good!");
-            //}
-            
-      },
+         }
+         let accuracy = (correctChars / (correctChars + incorrectChars)) * 100;
+         this.accuracy = accuracy.toFixed(2);
+         console.log("Accuracy: " + accuracy.toFixed(2) + "%");
+   },
    }
 };
 
-
-   </script>
+</script>
 
 
 
@@ -296,155 +273,3 @@ html, body {
 </style>
 
 
-
-
-<style scoped>
-/*
-.container {
-   position: relative;
-   width: 80%;
-   margin: 15% auto;
-}
- 
-
-.backGround {
-   pointer-events: none;
-   white-space: pre-wrap;
-   position: absolute;
-   top: 0;
-   left: 0;
-   color: grey;
-   padding: 10px;
-   font-size: 20px;
-   border-radius: 10px;
-   border: 2px solid black;
-   padding: 8px;
-   resize: none;
-   color: black;
-   outline: none;
-   font-family: Verdana;
-   }
-
-.typingUser {
-  position: relative;
-  background: transparent;
-  width: 100%;
-  min-height: 120px;
-  max-height: 200px;
-  font-size: 20px;
-  border-radius: 10px;
-  border: none;
-  padding: 8px;
-  resize: none;
-  color: transparent;
-  outline: none;
-  font-family: Verdana;
-  caret-color: rgb(15, 104, 131);
-  overflow: visible;
-  box-sizing: border-box;
-}
-
-.topContainer{
-   text-align: center;
-   font-family: cursive;
-   font-size: x-large;
-   color: bisque;
-
-}
-
-.container{
-   position: relative;
-   width: 80%;
-   height: 150%;
-   margin: 20px auto;
-   font-family: Verdana;
-   text-align: start;
-   pointer-events: auto;
-}
-
-   .timerShown{
-      display: flex;
-      justify-content: center;
-      text-align: center;
-      font-size: 88px;
-      font-weight: bold;
-      color: bisque;
-      font-family: cursive;
-   }
-
-.WordsPERMiniute{
-   display: flex;
-   justify-content: center;
-   font-family: cursive;
-   color: bisque;
-}
-
-.correctOrIncorrect {
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  white-space: pre-wrap;
-  font-size: 20px;
-  font-family: Verdana;
-  padding: 10px;
-}
-
-.incorrect{
-   color: red;
-   font-family: Verdana;
-   font-size: 20px;   
-}
-
-.textLeftOver{
-   color: grey;
-}
-
-.correct {
-   color: beige;
-} 
-
-.backgroundColor{
-   min-height: 100vh;
-   background-color: #000000;
-   background-size: auto;
-   background-position: center;
-   height: fit-content;
-   background-repeat: no-repeat ;
-}
-
-.LeaderBoard{
-   display: flex;
-   justify-content: center;
-   background-color: rgb(143, 138, 138);
-   color: black;
-   font-weight: bold;
-   padding: 10px 24px;
-   border-radius: 50px;
-   margin: auto;
-   width: 35%;
-   
-}
-
-.logoutButton{
-   display: flex;
-   justify-content: center;
-   background-color: rgb(143, 138, 138);
-   color: black;
-   font-weight: bold;
-   padding: 10px 24px;
-   border-radius: 50px;
-   margin: auto;
-   width: 35%;
-}
-
-   .scroll{
-      position: relative;
-      width: 100%;
-      height: 250px;
-      overflow-y: auto;
-      border: 2px solid bisque;
-      border-radius: 10px;
-   }
-      */
-   </style>
