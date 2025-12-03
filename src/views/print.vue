@@ -20,6 +20,14 @@
          <h1>  {{ wordCounter }} </h1>
          </div>
    </div>
+   <div class="accuracyWPM">
+      <!--
+      <h1> Accuracy  </h1>
+      <div class="formatWordCounter">
+         <h1>  {{ wordCounter }} </h1>
+         </div>
+      -->
+   </div>
 <div class="container"> 
    <div class="scroll">         
    <div class="correctOrIncorrect">
